@@ -30,10 +30,12 @@ distance = 34.0
 [node name="Node2D" type="Node2D" unique_id=1396456076]
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1040316871]
+process_mode = 3
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
 
 [node name="BallManager" type="Node2D" parent="." unique_id=1540103077]
+process_mode = 3
 script = ExtResource("7_272bh")
 gameProperties = ExtResource("2_lquwl")
 
