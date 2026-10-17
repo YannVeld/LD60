@@ -5,9 +5,6 @@ class_name UpgradeManager extends Node2D
 
 @export var possible_upgrades: Array[Upgrade] = []
 
-
-var font: Font = preload("res://Fonts/m6x11.ttf")
-
 var _upgrade_button := preload("res://Scenes/upgrade_button.tscn")
 
 var _previous_choice_bounce_count: int = 0
@@ -36,9 +33,6 @@ const KEY_TO_INDEX: Dictionary[Key, int] = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ballManager.out_of_bounds.connect(_on_out_of_bounds)
-	ballManager.bat_bounce.connect(_on_bat_bounce)
-
 	gameProperties.property_changed.connect(_on_upgrade_option_count_changed)
 
 	for ii in range(gameProperties.upgrade_option_count):
@@ -122,11 +116,8 @@ func _roll_new_upgrades():
 	_redraw_buttons()
 	
 
-func _on_out_of_bounds(out_of_bounds_count: int):
-	queue_redraw()
 	
-func _on_bat_bounce(bat_bounce_count: int):
-	queue_redraw()
+
 	
 	
 func _present_upgrade_choice():
@@ -140,6 +131,7 @@ func _present_upgrade_choice():
 		_button.show()
 
 func _apply_upgrade(index: int):
+	if not _is_choosing: return
 	_upgrades[index].apply(gameProperties)
 	_roll_new_upgrades()
 	_close_upgrade_choice()
@@ -165,11 +157,6 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("reroll"):
 		_roll_new_upgrades()
-
-
-func _draw() -> void:
-	draw_string(font, Vector2(16,16), "Bounces: " + str(ballManager.bat_bounce_count))
-	draw_string(font, Vector2(16,32), "Fails: " + str(ballManager.out_of_bounds_count))
 	
 func _input(event):
 	if not event is InputEventKey: return

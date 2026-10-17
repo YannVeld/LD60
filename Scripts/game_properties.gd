@@ -2,6 +2,9 @@ class_name GameProperties extends Resource
 
 signal property_changed(property: String, new_value)
 
+
+
+
 @export_group("Ball")
 @export var ball_initial_speed: float = 500.0:
 	set(value):
@@ -47,6 +50,8 @@ func check_ball_size(value: int) -> bool:
 	return true
 
 
+
+
 @export_group("Bat")
 @export var bat_boost: float = 100.0:
 	set(value):
@@ -70,6 +75,11 @@ func check_bat_width(value: float) -> bool:
 	if value <= 1.0: return false
 	return true
 
+
+
+
+
+
 @export_group("Game Area")
 
 @export var wall_distance: float = 180:
@@ -80,7 +90,12 @@ func check_bat_width(value: float) -> bool:
 		property_changed.emit("wall_distance", value)
 func check_wall_distance(value: float) -> bool:
 	if value <= 1.0: return false
+	if value > 640.0: return false
 	return true
+
+
+
+
 
 @export_group("Gameplay")
 
@@ -99,3 +114,19 @@ func check_wall_distance(value: float) -> bool:
 func check_upgrade_option_count(value: int) -> bool:
 	if value <= 0: return false
 	return true
+	
+@export var max_lives: int = 5:
+	set(value):
+		if max_lives == value: return
+		max_lives = value
+		property_changed.emit("max_lives", value)
+func check_max_lives(value: int) -> bool:
+	if value <= 0: return false
+	return true
+	
+	
+@export var bounce_count_for_life_gain: int = 3:
+	set(value):
+		if bounce_count_for_life_gain == value: return
+		bounce_count_for_life_gain = value
+		property_changed.emit("bounce_count_for_life_gain", value)

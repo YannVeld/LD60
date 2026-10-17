@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dggmv72mor6lf"]
 
+[ext_resource type="Script" uid="uid://m635jmgkti5n" path="res://Scripts/lives_manager.gd" id="1_2cqfq"]
 [ext_resource type="Script" uid="uid://dlj1b61wwimo4" path="res://Scripts/upgrade_manager.gd" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bmauc48gxglmh" path="res://Sprites/greenSquare.png" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
@@ -36,6 +37,11 @@ height = 64.0
 distance = 34.0
 
 [node name="Node2D" type="Node2D" unique_id=1396456076]
+
+[node name="LivesManager" type="Node2D" parent="." unique_id=1256196642]
+z_index = 1000
+script = ExtResource("1_2cqfq")
+gameProperties = ExtResource("2_lquwl")
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1040316871]
 process_mode = 3
