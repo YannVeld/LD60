@@ -38,6 +38,7 @@ distance = 34.0
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1040316871]
 process_mode = 3
+z_index = 1000
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
 possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("9_82xsv")])
