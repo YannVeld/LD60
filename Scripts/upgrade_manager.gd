@@ -70,10 +70,13 @@ func _redraw_buttons():
 	for ii in range(option_count):
 		var _button: UpgradeButton = _buttons[ii]
 		var _offset: float = BUTTON_SPACING * (ii - (option_count - 1)/2.)
+		
+		_button.text = _upgrades[ii].description
+		
 		#_button.global_position = center - _button.size/2.0 + Vector2(_offset,0)
 		_button.global_position = center - _button.size/2.0 + Vector2(0,_offset)
 		
-		_button.text = _upgrades[ii].description
+		
 	
 	
 func _on_upgrade_option_count_changed(new_count: int):
@@ -99,7 +102,20 @@ func _roll_new_upgrades():
 	_upgrades.resize(option_count)
 	
 	for ii in range(option_count):
-		_upgrades[ii] = possible_upgrades.pick_random()
+		var _option: Upgrade
+		var _is_okay: bool = false
+		var _iters: int = 0
+		while not _is_okay:
+			_option = possible_upgrades.pick_random()
+			
+			_is_okay = true
+			if not _option.check_possible(gameProperties): _is_okay = false
+			for jj in range(ii): if _upgrades[jj] == _option: _is_okay = false
+			
+			_iters = _iters + 1
+			assert(_iters < 999, "Could not find a suitable upgrade.")
+			
+		_upgrades[ii] = _option
 		
 	_redraw_buttons()
 	

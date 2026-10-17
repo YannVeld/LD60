@@ -18,15 +18,17 @@ func _get_new_value(gameProperties: GameProperties):
 		Operation.SET: return value
 
 func apply(gameProperties: GameProperties):
-	var _new_value = _get_new_value(gameProperties)
-	if not check_possible(gameProperties, _new_value):
+	if not check_possible(gameProperties):
 		print("Upgrade not valid!")
 		return
 
+	var _new_value = _get_new_value(gameProperties)
 	gameProperties.set(property_name, _new_value)
 
 
-func check_possible(gameProperties: GameProperties, value) -> bool:
+func check_possible(gameProperties: GameProperties) -> bool:
 	if not gameProperties.has_method("check_"+property_name):
 		return true
-	return gameProperties.call("check_"+property_name, value)
+		
+	var _new_value = _get_new_value(gameProperties)
+	return gameProperties.call("check_"+property_name, _new_value)
