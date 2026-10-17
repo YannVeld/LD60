@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bfx5yvg0gwl7r"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_5vbna"]
+
+[resource]
+script = ExtResource("1_5vbna")
+property_name = "ball_size"
+value = -1.0
+description = "Decrease ball size"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

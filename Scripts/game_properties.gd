@@ -34,6 +34,17 @@ func check_ball_max_speed(value: int) -> bool:
 func check_ball_count(value: int) -> bool:
 	if value <= 0: return false
 	return true
+	
+@export var ball_size: int = 5:
+	set(value):
+		if not check_ball_size(value): return
+		if ball_size == value: return
+		ball_size = value
+		property_changed.emit("ball_size", value)
+func check_ball_size(value: int) -> bool:
+	if value <= 0: return false
+	if value > 5: return false
+	return true
 
 
 @export_group("Bat")
