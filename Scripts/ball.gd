@@ -6,13 +6,16 @@ const MAXSPEED: float = 2000.0
 
 var initial_pos: Vector2
 
+signal bat_bounce
+signal out_of_bounds
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initial_pos = global_position
 	
 	body_entered.connect(_on_body_entered)
 	
-	var _outArea: Area2D = $"../OutArea"
+	var _outArea: Area2D = $"/root/Node2D/OutArea"
 	_outArea.body_entered.connect(_on_out_area_entered)
 	
 	_respawn(0.0)
@@ -46,7 +49,9 @@ func _respawn(respawn_time: float):
 func _on_body_entered(body: Node):
 	if body is Bat:
 		set_axis_velocity(linear_velocity + Vector2.UP * gameProperties.bat_boost)
+		bat_bounce.emit()
 	
 func _on_out_area_entered(body: Node2D):
 	if not body == self: return
+	out_of_bounds.emit()
 	_respawn(gameProperties.ball_respawn_time)

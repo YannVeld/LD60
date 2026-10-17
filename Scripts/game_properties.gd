@@ -5,6 +5,13 @@ class_name GameProperties extends Resource
 @export var ball_speed: float = 500.0
 @export var ball_respawn_time: float = 2.0
 
+signal ball_count_changed
+@export var ball_count: int = 1:
+	set(value): 
+		if value <= 0: value = 0
+		ball_count = value
+		ball_count_changed.emit()
+
 @export_group("Bat")
 @export var bat_boost: float = 100.0
 @export var bat_speed: float = 500.0

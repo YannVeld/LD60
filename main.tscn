@@ -1,20 +1,12 @@
 [gd_scene format=3 uid="uid://dggmv72mor6lf"]
 
-[ext_resource type="Script" uid="uid://dxgq8kcajiq3s" path="res://Scripts/ball.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://2wh2ila100x0" path="res://Sprites/yellowCircle.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dlj1b61wwimo4" path="res://Scripts/upgrade_manager.gd" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bmauc48gxglmh" path="res://Sprites/greenSquare.png" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b23buabh3sigj" path="res://Scripts/bat.gd" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://ctafehlq1f6dw" path="res://Sprites/brownBlock.png" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://dqtkoi3ld1q82" path="res://Scripts/side_walls.gd" id="4_272bh"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
-friction = 0.0
-rough = true
-bounce = 1.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_sifc0"]
-radius = 8.0
+[ext_resource type="Script" uid="uid://di6rtvbqpcuw7" path="res://Scripts/ball_manager.gd" id="7_272bh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 friction = 0.0
@@ -37,24 +29,16 @@ distance = 34.0
 
 [node name="Node2D" type="Node2D" unique_id=1396456076]
 
-[node name="Ball" type="RigidBody2D" parent="." unique_id=862803632]
-position = Vector2(322, 194)
-physics_material_override = SubResource("PhysicsMaterial_h2yge")
-gravity_scale = 0.5
-lock_rotation = true
-continuous_cd = 2
-contact_monitor = true
-max_contacts_reported = 3
-script = ExtResource("1_0xm2m")
+[node name="UpgradeManager" type="Node2D" parent="." unique_id=1040316871]
+script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=180812032]
-texture = ExtResource("1_ig7tw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=2127869619]
-shape = SubResource("CircleShape2D_sifc0")
+[node name="BallManager" type="Node2D" parent="." unique_id=1540103077]
+script = ExtResource("7_272bh")
+gameProperties = ExtResource("2_lquwl")
 
 [node name="LevelWalls" type="StaticBody2D" parent="." unique_id=1074300178]
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_0xm2m")
 script = ExtResource("4_272bh")
 gameProperties = ExtResource("2_lquwl")
@@ -84,6 +68,7 @@ texture = ExtResource("3_h2yge")
 
 [node name="Bat" type="StaticBody2D" parent="." unique_id=1031534249]
 position = Vector2(325, 330)
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_1bvp3")
 script = ExtResource("3_1bvp3")
 gameProperties = ExtResource("2_lquwl")
@@ -99,7 +84,7 @@ shape = SubResource("CapsuleShape2D_1bvp3")
 
 [node name="OutArea" type="Area2D" parent="." unique_id=244651015]
 position = Vector2(324, 427.64)
-collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OutArea" unique_id=1318569660]
 shape = SubResource("WorldBoundaryShape2D_cx551")
