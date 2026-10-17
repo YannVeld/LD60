@@ -5,8 +5,15 @@
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b23buabh3sigj" path="res://Scripts/bat.gd" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://ctafehlq1f6dw" path="res://Sprites/brownBlock.png" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="3_w48qg"]
 [ext_resource type="Script" uid="uid://dqtkoi3ld1q82" path="res://Scripts/side_walls.gd" id="4_272bh"]
+[ext_resource type="Resource" uid="uid://cjgk8sbqvqba4" path="res://Upgrades/add_ball.tres" id="4_vivmo"]
+[ext_resource type="Resource" uid="uid://cpngqtjhgdnp5" path="res://Upgrades/decrease_bat_speed.tres" id="5_2cqfq"]
+[ext_resource type="Resource" uid="uid://bb76jss1o2oea" path="res://Upgrades/decrease_bat_width.tres" id="6_yaehf"]
+[ext_resource type="Resource" uid="uid://cf6tsi80if0k5" path="res://Upgrades/decrease_upgrade_option_count.tres" id="7_074og"]
 [ext_resource type="Script" uid="uid://di6rtvbqpcuw7" path="res://Scripts/ball_manager.gd" id="7_272bh"]
+[ext_resource type="Resource" uid="uid://g56ek58hu6mw" path="res://Upgrades/increase_ball_speed.tres" id="8_cegan"]
+[ext_resource type="Resource" uid="uid://dx5t73f8bnoe1" path="res://Upgrades/increase_wall_distance.tres" id="9_82xsv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 friction = 0.0
@@ -33,6 +40,7 @@ distance = 34.0
 process_mode = 3
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
+possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("9_82xsv")])
 
 [node name="BallManager" type="Node2D" parent="." unique_id=1540103077]
 process_mode = 3

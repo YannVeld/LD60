@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cpngqtjhgdnp5"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_3faaa"]
+
+[resource]
+script = ExtResource("1_3faaa")
+property_name = "bat_speed"
+operation = 1
+value = 0.75
+description = "Decrease bat speed"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

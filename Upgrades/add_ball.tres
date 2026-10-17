@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cjgk8sbqvqba4"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_ryog7"]
+
+[resource]
+script = ExtResource("1_ryog7")
+property_name = "ball_count"
+description = "Add a ball"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

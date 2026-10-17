@@ -1,8 +1,10 @@
 class_name UpgradeManager extends Node2D
 
 @export var gameProperties: GameProperties
-
 @onready var ballManager: BallManager = $"../BallManager"
+
+@export var possible_upgrades: Array[Upgrade] = []
+
 
 var font: Font = preload("res://Fonts/m6x11.ttf")
 
@@ -15,6 +17,7 @@ var _buttons: Array[UpgradeButton] = []
 var option_count: int:
 	get: return _buttons.size()
 
+var _upgrades: Array[Upgrade] = []
 
 const BUTTON_SPACING: float = 64.0
 
@@ -40,7 +43,9 @@ func _ready() -> void:
 
 	for ii in range(gameProperties.upgrade_option_count):
 		_create_button()
-	_reposition_buttons()
+		
+	_roll_new_upgrades()
+	
 
 func _create_button():
 	var _inst: UpgradeButton = _upgrade_button.instantiate()
@@ -60,12 +65,15 @@ func _remove_button():
 	_buttons.remove_at(option_count-1)
 	_button.queue_free()
 	
-func _reposition_buttons():
+func _redraw_buttons():
 	var center: Vector2 = get_viewport_rect().size/2.0
 	for ii in range(option_count):
 		var _button: UpgradeButton = _buttons[ii]
-		var _x_offset: float = BUTTON_SPACING * (ii - (option_count - 1)/2.)
-		_button.global_position = center - _button.size/2.0 + Vector2(_x_offset,0)
+		var _offset: float = BUTTON_SPACING * (ii - (option_count - 1)/2.)
+		#_button.global_position = center - _button.size/2.0 + Vector2(_offset,0)
+		_button.global_position = center - _button.size/2.0 + Vector2(0,_offset)
+		
+		_button.text = _upgrades[ii].description
 	
 	
 func _on_upgrade_option_count_changed(new_count: int):
@@ -83,7 +91,17 @@ func _on_upgrade_option_count_changed(new_count: int):
 			_remove_button()
 		_diff = new_count - option_count	
 	
-	_reposition_buttons()
+	_roll_new_upgrades()
+	
+
+func _roll_new_upgrades():
+	_upgrades.clear()
+	_upgrades.resize(option_count)
+	
+	for ii in range(option_count):
+		_upgrades[ii] = possible_upgrades.pick_random()
+		
+	_redraw_buttons()
 	
 
 func _on_out_of_bounds(out_of_bounds_count: int):
@@ -104,7 +122,9 @@ func _present_upgrade_choice():
 		_button.show()
 
 func _apply_upgrade(index: int):
-	print("Applied upgrade "+str(index))
+	print("Applied upgrade to "+_upgrades[index].property_name)
+	_upgrades[index].apply(gameProperties)
+	_roll_new_upgrades()
 	_close_upgrade_choice()
 
 func _close_upgrade_choice():
@@ -125,6 +145,9 @@ func _process(delta: float) -> void:
 	var _next_count: int = _previous_choice_bounce_count + gameProperties.bounces_between_choices
 	if ballManager.bat_bounce_count >= _next_count:
 		_present_upgrade_choice()
+		
+	if Input.is_action_just_pressed("reroll"):
+		_roll_new_upgrades()
 
 
 func _draw() -> void:

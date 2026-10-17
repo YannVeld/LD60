@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bb76jss1o2oea"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_k02cd"]
+
+[resource]
+script = ExtResource("1_k02cd")
+property_name = "bat_width"
+value = -8.0
+description = "Decrease bat width"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dx5t73f8bnoe1"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_5xo02"]
+
+[resource]
+script = ExtResource("1_5xo02")
+property_name = "wall_distance"
+value = 64.0
+description = "Increase wall distance"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

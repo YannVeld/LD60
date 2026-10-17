@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cf6tsi80if0k5"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_dmssn"]
+
+[resource]
+script = ExtResource("1_dmssn")
+property_name = "upgrade_option_count"
+value = -1.0
+description = "Decrease the amount of upgrade options"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"
