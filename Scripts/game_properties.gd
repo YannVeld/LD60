@@ -37,4 +37,12 @@ signal wall_distance_changed
 @export_group("Gameplay")
 
 @export var bounces_between_choices: int = 5
-@export var upgrade_option_count: int = 3
+
+signal upgrade_option_count_changed(count: int)
+@export var upgrade_option_count: int = 3:
+	set(value): 
+		if value <= 0: 
+			print("Cannot reduce upgrades further")
+			value = 1
+		upgrade_option_count = value
+		upgrade_option_count_changed.emit(value)

@@ -6,11 +6,17 @@ class_name UpgradeManager extends Node2D
 
 var font: Font = preload("res://Fonts/m6x11.ttf")
 
+var _upgrade_button := preload("res://Scenes/upgrade_button.tscn")
+
 var _previous_choice_bounce_count: int = 0
 var _is_choosing: bool = false
 
 var _buttons: Array[UpgradeButton] = []
+var option_count: int:
+	get: return _buttons.size()
 
+
+const BUTTON_SPACING: float = 64.0
 
 const KEY_TO_INDEX: Dictionary[Key, int] = {
 	KEY_1: 1,
@@ -30,14 +36,55 @@ func _ready() -> void:
 	ballManager.out_of_bounds.connect(_on_out_of_bounds)
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 
-	for _button in get_children():
-		if not _button is Button: continue
-		_buttons.append(_button)
-		
-	for _button: UpgradeButton in _buttons:
-		_button.pressed_upgrade.connect(_on_upgrade_button_pressed)
-		_button.hide()
+	gameProperties.upgrade_option_count_changed.connect(_on_upgrade_option_count_changed)
 
+	for ii in range(gameProperties.upgrade_option_count):
+		_create_button()
+	_reposition_buttons()
+
+func _create_button():
+	var _inst: UpgradeButton = _upgrade_button.instantiate()
+	var center: Vector2 = get_viewport_rect().size/2.0
+	_inst.global_position = center
+	_inst.index = option_count
+	_inst.text = str(option_count + 1)
+	add_child(_inst)
+
+	_inst.pressed_upgrade.connect(_on_upgrade_button_pressed)
+	_buttons.append(_inst)
+	
+	_inst.hide()
+	
+func _remove_button():
+	var _button: UpgradeButton = _buttons[option_count-1]
+	_buttons.remove_at(option_count-1)
+	_button.queue_free()
+	
+func _reposition_buttons():
+	var center: Vector2 = get_viewport_rect().size/2.0
+	for ii in range(option_count):
+		var _button: UpgradeButton = _buttons[ii]
+		var _x_offset: float = BUTTON_SPACING * (ii - (option_count - 1)/2.)
+		_button.global_position = center - _button.size/2.0 + Vector2(_x_offset,0)
+	
+	
+func _on_upgrade_option_count_changed(new_count: int):
+	var _diff = new_count - option_count
+	if _diff == 0: return
+	
+	if new_count < 1: 
+		print("Tried to remove last button")
+		return
+		
+	while _diff != 0:
+		if _diff > 0: 
+			_create_button()
+		else:
+			_remove_button()
+		_diff = new_count - option_count	
+	
+	_reposition_buttons()
+	
 
 func _on_out_of_bounds(out_of_bounds_count: int):
 	queue_redraw()

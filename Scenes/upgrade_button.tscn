@@ -4,6 +4,7 @@
 
 [node name="UpgradeButton" type="Button" unique_id=1542294873]
 process_mode = 2
+z_index = 1000
 offset_left = 177.0
 offset_top = 148.0
 offset_right = 209.0
