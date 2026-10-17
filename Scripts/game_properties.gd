@@ -3,6 +3,16 @@ class_name GameProperties extends Resource
 signal property_changed(property: String, new_value)
 
 
+var _initial_copy: GameProperties
+func initialize():
+	_initial_copy = duplicate(true)
+
+func reset():
+	assert(_initial_copy != null, "Resource was not initialized before reset")
+	for _prop in get_property_list():
+		if not (_prop["usage"] & PROPERTY_USAGE_STORAGE): continue
+		var _name: String = _prop["name"]
+		set(_name, _initial_copy.get(_name))
 
 
 @export_group("Ball")

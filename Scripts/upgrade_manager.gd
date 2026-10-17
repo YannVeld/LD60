@@ -30,7 +30,6 @@ const KEY_TO_INDEX: Dictionary[Key, int] = {
 	KEY_9: 9
 }
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gameProperties.property_changed.connect(_on_upgrade_option_count_changed)

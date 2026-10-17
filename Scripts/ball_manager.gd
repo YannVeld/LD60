@@ -18,7 +18,6 @@ var _out_of_bounds_count: int = 0
 var out_of_bounds_count: int:
 	get: return _out_of_bounds_count
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gameProperties.property_changed.connect(_on_ball_count_changed)
 	
@@ -30,15 +29,27 @@ func _ready() -> void:
 func _on_ball_count_changed(property: String, new_value):
 	if property != "ball_count": return
 	
-	var _num_new_balls = gameProperties.ball_count - ball_count
-	if _num_new_balls <= 0: 
-		print("Tried to create balls, but there were already enough!")
-		return
+	var _diff = gameProperties.ball_count - ball_count
+	if _diff == 0: return
 		
-	for ii in range(_num_new_balls):
-		var _pos = Vector2.ZERO
-		_pos.x = randf_range(-gameProperties.wall_distance/2+16, gameProperties.wall_distance/2-16)
-		_spawn_ball(_pos)
+	while _diff != 0:
+		if _diff > 0: 
+			var _pos = Vector2.ZERO
+			_pos.x = randf_range(-gameProperties.wall_distance/2+16, gameProperties.wall_distance/2-16)
+			_spawn_ball(_pos)
+		else:
+			_remove_ball()
+		_diff = gameProperties.ball_count - ball_count
+	
+	#var _num_new_balls = gameProperties.ball_count - ball_count
+	#if _num_new_balls <= 0: 
+		#print("Tried to create balls, but there were already enough!")
+		#return
+		#
+	#for ii in range(_num_new_balls):
+		#var _pos = Vector2.ZERO
+		#_pos.x = randf_range(-gameProperties.wall_distance/2+16, gameProperties.wall_distance/2-16)
+		#_spawn_ball(_pos)
 		
 
 func _spawn_ball(pos_from_center: Vector2):
@@ -51,6 +62,11 @@ func _spawn_ball(pos_from_center: Vector2):
 	_inst.out_of_bounds.connect(_on_ball_out_of_bounds)
 	
 	_ball_list.append(_inst)
+
+func _remove_ball():
+	var _ball: Ball = _ball_list[ball_count-1]
+	_ball_list.remove_at(ball_count-1)
+	_ball.queue_free()
 
 func _on_bat_bounce():
 	_bat_bounce_count += 1
