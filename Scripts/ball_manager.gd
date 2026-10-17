@@ -20,14 +20,16 @@ var out_of_bounds_count: int:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	gameProperties.ball_count_changed.connect(_on_ball_count_changed)
+	gameProperties.property_changed.connect(_on_ball_count_changed)
 	
 	for ii in range(gameProperties.ball_count):
 		var _pos = Vector2.ZERO
 		_pos.x = randf_range(-gameProperties.wall_distance/2+16, gameProperties.wall_distance/2-16)
 		_spawn_ball(_pos)
 
-func _on_ball_count_changed():
+func _on_ball_count_changed(property: String, new_value):
+	if property != "ball_count": return
+	
 	var _num_new_balls = gameProperties.ball_count - ball_count
 	if _num_new_balls <= 0: 
 		print("Tried to create balls, but there were already enough!")

@@ -39,7 +39,7 @@ func _ready() -> void:
 	ballManager.out_of_bounds.connect(_on_out_of_bounds)
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 
-	gameProperties.upgrade_option_count_changed.connect(_on_upgrade_option_count_changed)
+	gameProperties.property_changed.connect(_on_upgrade_option_count_changed)
 
 	for ii in range(gameProperties.upgrade_option_count):
 		_create_button()
@@ -79,7 +79,9 @@ func _redraw_buttons():
 		
 	
 	
-func _on_upgrade_option_count_changed(new_count: int):
+func _on_upgrade_option_count_changed(property: String, new_count):
+	if property != "upgrade_option_count": return
+	
 	var _diff = new_count - option_count
 	if _diff == 0: return
 	

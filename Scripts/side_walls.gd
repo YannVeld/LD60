@@ -7,11 +7,15 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	gameProperties.wall_distance_changed.connect(_on_wall_distance_changed)
-	_on_wall_distance_changed()
+	gameProperties.property_changed.connect(_on_wall_distance_changed)
+	_update_wall_distance()
 	
 
-func _on_wall_distance_changed():
+func _on_wall_distance_changed(property: String, new_value):
+	if property != "wall_distance": return
+	_update_wall_distance()
+	
+func _update_wall_distance():
 	var center: Vector2 = get_viewport_rect().size/2.0
 	_left_wall.global_position.x = center.x - gameProperties.wall_distance / 2.0
 	_right_wall.global_position.x = center.x + gameProperties.wall_distance / 2.0

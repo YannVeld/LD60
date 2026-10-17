@@ -9,12 +9,16 @@ var _input_dir: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	gameProperties.bat_width_changed.connect(_on_bat_width_changed)
-	_on_bat_width_changed()
+	gameProperties.property_changed.connect(_on_bat_width_changed)
+	_set_bat_width()
 	
 	pass # Replace with function body.
 
-func _on_bat_width_changed():
+func _on_bat_width_changed(property: String, new_value=0):
+	if property != "bat_width": return
+	_set_bat_width()
+	
+func _set_bat_width():
 	var _shape: CapsuleShape2D = _bat_shape.shape
 	_shape.height = gameProperties.bat_width
 

@@ -1,68 +1,90 @@
 class_name GameProperties extends Resource
 
+signal property_changed(property: String, new_value)
 
 @export_group("Ball")
-@export var ball_initial_speed: float = 500.0
+@export var ball_initial_speed: float = 500.0:
+	set(value):
+		if ball_initial_speed == value: return
+		ball_initial_speed = value
+		property_changed.emit("ball_initial_speed", value)
 
 @export var ball_max_speed: float = 500.0:
-	set(value): 
+	set(value):
+		if ball_max_speed == value: return
 		if not check_ball_max_speed(value): return
 		ball_max_speed = value
+		property_changed.emit("ball_max_speed", value)
 func check_ball_max_speed(value: int) -> bool:
 	if value <= 2000: return false
 	return true
 
-@export var ball_respawn_time: float = 1.0
+@export var ball_respawn_time: float = 1.0:
+	set(value):
+		if ball_respawn_time == value: return
+		ball_respawn_time = value
+		property_changed.emit("ball_respawn_time", value)
 
-signal ball_count_changed
 @export var ball_count: int = 1:
-	set(value): 
+	set(value):
 		if not check_ball_count(value): return
+		if ball_count == value: return
 		ball_count = value
-		ball_count_changed.emit()
+		property_changed.emit("ball_count", value)
 func check_ball_count(value: int) -> bool:
 	if value <= 0: return false
 	return true
 
 
 @export_group("Bat")
-@export var bat_boost: float = 100.0
-@export var bat_speed: float = 500.0
+@export var bat_boost: float = 100.0:
+	set(value):
+		if bat_boost == value: return
+		bat_boost = value
+		property_changed.emit("bat_boost", value)
 
-signal bat_width_changed
+@export var bat_speed: float = 500.0:
+	set(value):
+		if bat_speed == value: return
+		bat_speed = value
+		property_changed.emit("bat_speed", value)
+
 @export var bat_width: float = 64.0:
-	set(value): 
+	set(value):
 		if not check_bat_width(value): return
+		if bat_width == value: return
 		bat_width = value
-		bat_width_changed.emit()
+		property_changed.emit("bat_width", value)
 func check_bat_width(value: float) -> bool:
 	if value <= 1.0: return false
 	return true
 
 @export_group("Game Area")
 
-signal wall_distance_changed
 @export var wall_distance: float = 180:
-	set(value): 
+	set(value):
 		if not check_wall_distance(value): return
+		if wall_distance == value: return
 		wall_distance = value
-		wall_distance_changed.emit()
+		property_changed.emit("wall_distance", value)
 func check_wall_distance(value: float) -> bool:
 	if value <= 1.0: return false
 	return true
 
 @export_group("Gameplay")
 
-@export var bounces_between_choices: int = 5
+@export var bounces_between_choices: int = 5:
+	set(value):
+		if bounces_between_choices == value: return
+		bounces_between_choices = value
+		property_changed.emit("bounces_between_choices", value)
 
-signal upgrade_option_count_changed(count: int)
 @export var upgrade_option_count: int = 3:
-	set(value): 
-		if not check_upgrade_option_count(value): 
-			print("Cannot reduce upgrades further")
-			return
+	set(value):
+		if not check_upgrade_option_count(value): return
+		if upgrade_option_count == value: return
 		upgrade_option_count = value
-		upgrade_option_count_changed.emit(value)
+		property_changed.emit("upgrade_option_count", value)
 func check_upgrade_option_count(value: int) -> bool:
 	if value <= 0: return false
 	return true
