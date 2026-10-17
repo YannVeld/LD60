@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_3jlsy")
-operation = 1
-value = 1.5
+value = 250.0
 description = "Increase maximal ball speed"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"
