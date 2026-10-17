@@ -86,6 +86,7 @@ texture = ExtResource("3_h2yge")
 position = Vector2(325, 330)
 physics_material_override = SubResource("PhysicsMaterial_1bvp3")
 script = ExtResource("3_1bvp3")
+gameProperties = ExtResource("2_lquwl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bat" unique_id=829826266]
 scale = Vector2(4, 0.75)
