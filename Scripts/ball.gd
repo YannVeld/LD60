@@ -62,7 +62,6 @@ func _on_property_changed(property: String, new_value):
 	_reset_size()
 	
 func _reset_size():
-	print("Set size")
 	var _radius: float = 8
 	match gameProperties.ball_size:
 		1: _radius = 2 

@@ -140,7 +140,6 @@ func _present_upgrade_choice():
 		_button.show()
 
 func _apply_upgrade(index: int):
-	print("Applied upgrade to "+_upgrades[index].property_name)
 	_upgrades[index].apply(gameProperties)
 	_roll_new_upgrades()
 	_close_upgrade_choice()
