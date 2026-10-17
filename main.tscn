@@ -18,6 +18,9 @@
 [ext_resource type="Resource" uid="uid://g56ek58hu6mw" path="res://Upgrades/increase_ball_speed.tres" id="8_cegan"]
 [ext_resource type="Resource" uid="uid://dx5t73f8bnoe1" path="res://Upgrades/increase_wall_distance.tres" id="9_82xsv"]
 [ext_resource type="Resource" uid="uid://bfx5yvg0gwl7r" path="res://Upgrades/decrease_ball_size.tres" id="10_vivmo"]
+[ext_resource type="Resource" uid="uid://de78c7ioffkux" path="res://Upgrades/decrease_max_lives.tres" id="11_getpj"]
+[ext_resource type="Resource" uid="uid://cognj44vigmkg" path="res://Upgrades/increase_bat_boost.tres" id="14_ryguw"]
+[ext_resource type="Resource" uid="uid://toycg2i38jjm" path="res://Upgrades/increase_bounce_count_for_life_gain.tres" id="15_d13ii"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 friction = 0.0
@@ -58,7 +61,7 @@ process_mode = 3
 z_index = 1000
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
-possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("9_82xsv"), ExtResource("10_vivmo")])
+possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("10_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("11_getpj"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("14_ryguw"), ExtResource("15_d13ii"), ExtResource("9_82xsv")])
 
 [node name="BallManager" type="Node2D" parent="." unique_id=1540103077]
 process_mode = 3

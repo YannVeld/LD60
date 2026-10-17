@@ -140,3 +140,7 @@ func check_max_lives(value: int) -> bool:
 		if bounce_count_for_life_gain == value: return
 		bounce_count_for_life_gain = value
 		property_changed.emit("bounce_count_for_life_gain", value)
+func check_bounce_count_for_life_gain(value: int) -> bool:
+	if value <= 0: return false
+	if value > 6: return false
+	return true

@@ -13,6 +13,7 @@ func _ready() -> void:
 	ballManager.out_of_bounds.connect(_on_out_of_bounds)
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 	livesManager.reset_game.connect(_on_game_reset)
+	upgradeManager.upgrade_applied.connect(_on_upgrade_applied)
 
 func _on_out_of_bounds(out_of_bounds_count: int):
 	queue_redraw()
@@ -21,6 +22,9 @@ func _on_bat_bounce(bat_bounce_count: int):
 	queue_redraw()
 	
 func _on_game_reset():
+	queue_redraw()
+	
+func _on_upgrade_applied():
 	queue_redraw()
 
 func _draw() -> void:

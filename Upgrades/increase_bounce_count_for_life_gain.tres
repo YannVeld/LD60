@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://toycg2i38jjm"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_ry1tn"]
+
+[resource]
+script = ExtResource("1_ry1tn")
+property_name = "bounce_count_for_life_gain"
+description = "Increases bounces per life gain"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

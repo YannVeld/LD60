@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://de78c7ioffkux"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_lv0yn"]
+
+[resource]
+script = ExtResource("1_lv0yn")
+property_name = "max_lives"
+value = -1.0
+description = "Decrease max lives"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

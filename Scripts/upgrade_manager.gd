@@ -5,6 +5,7 @@ class_name UpgradeManager extends Node2D
 
 @export var possible_upgrades: Array[Upgrade] = []
 
+signal upgrade_applied
 var _upgrade_button := preload("res://Scenes/upgrade_button.tscn")
 
 var _previous_choice_bounce_count: int = 0
@@ -134,6 +135,7 @@ func _apply_upgrade(index: int):
 	_upgrades[index].apply(gameProperties)
 	_roll_new_upgrades()
 	_close_upgrade_choice()
+	upgrade_applied.emit()
 
 func _close_upgrade_choice():
 	for _button: Button in _buttons:

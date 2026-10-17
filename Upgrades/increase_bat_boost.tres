@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cognj44vigmkg"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_vh4r0"]
+
+[resource]
+script = ExtResource("1_vh4r0")
+property_name = "bat_boost"
+value = 100.0
+description = "Increase ball acceleration on bat"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"
