@@ -18,6 +18,10 @@ var _out_of_bounds_count: int = 0
 var out_of_bounds_count: int:
 	get: return _out_of_bounds_count
 
+func reset():
+	_bat_bounce_count = 0
+	_out_of_bounds_count = 0
+
 func _ready() -> void:
 	gameProperties.property_changed.connect(_on_ball_count_changed)
 	

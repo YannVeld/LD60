@@ -24,6 +24,7 @@ var waiting_to_begin: bool = true
 func _ready() -> void:
 	ballManager.out_of_bounds.connect(_on_out_of_bounds)
 	ballManager.bat_bounce.connect(_on_bat_bounce)
+	reset_game.connect(ballManager.reset)
 	lives_lost = 0
 	
 	gameProperties.initialize()

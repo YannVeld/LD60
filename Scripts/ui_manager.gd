@@ -28,11 +28,16 @@ func _on_upgrade_applied():
 	queue_redraw()
 
 func _draw() -> void:
+	var center: Vector2 = get_viewport_rect().size/2.0
+	var _width: float = get_viewport_rect().size.x
+	var _height: float = get_viewport_rect().size.y
+	
 	draw_string(font, Vector2(16,16), "Lives left: " + str(livesManager.lives_left))
 	draw_string(font, Vector2(16,32), "Bounces left for next life: " + str(gameProperties.bounce_count_for_life_gain - livesManager.bounces_since_fail))	
 	
-	var center: Vector2 = get_viewport_rect().size/2.0
-	var _width: float = get_viewport_rect().size.x
+	draw_string(font, Vector2(16,_height-16), "Score: " + str(ballManager.bat_bounce_count))
+	
+
 	
 	if livesManager.is_game_over:
 		draw_string(font, center + Vector2(-_width/2,0), "Game Over!", HORIZONTAL_ALIGNMENT_CENTER, _width, 64)
