@@ -32,3 +32,9 @@ signal wall_distance_changed
 		if value <= 1.0: value = 1.0
 		wall_distance = value
 		wall_distance_changed.emit()
+
+
+@export_group("Gameplay")
+
+@export var bounces_between_choices: int = 5
+@export var upgrade_option_count: int = 3
