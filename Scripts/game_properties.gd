@@ -1,9 +1,11 @@
 class_name GameProperties extends Resource
 
 
-
+@export_group("Ball")
 @export var ball_speed: float = 500.0
+@export var ball_respawn_time: float = 2.0
 
+@export_group("Bat")
 @export var bat_boost: float = 100.0
 @export var bat_speed: float = 500.0
 
@@ -14,8 +16,8 @@ signal bat_width_changed
 		bat_width = value
 		bat_width_changed.emit()
 
-@export var ball_respawn_time: float = 2.0
 
+@export_group("Game Area")
 
 signal wall_distance_changed
 @export var wall_distance: float = 180:
