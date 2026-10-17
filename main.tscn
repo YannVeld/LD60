@@ -1,40 +1,89 @@
 [gd_scene format=3 uid="uid://dggmv72mor6lf"]
 
-[ext_resource type="Script" uid="uid://bs5s20m8outse" path="res://Scripts/player_movement.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dxgq8kcajiq3s" path="res://Scripts/ball.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://2wh2ila100x0" path="res://Sprites/yellowCircle.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bmauc48gxglmh" path="res://Sprites/greenSquare.png" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://ctafehlq1f6dw" path="res://Sprites/brownBlock.png" id="3_h2yge"]
+[ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
+[ext_resource type="Script" uid="uid://b23buabh3sigj" path="res://Scripts/bat.gd" id="3_1bvp3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c7xce"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
+friction = 0.0
+rough = true
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sifc0"]
 radius = 8.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7xce"]
-size = Vector2(16, 16)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
+friction = 0.0
+rough = true
+bounce = 1.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c7xce"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sifc0"]
+normal = Vector2(0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bvp3"]
+radius = 6.0
+height = 64.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cx551"]
+distance = 34.0
 
 [node name="Node2D" type="Node2D" unique_id=1396456076]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2123570549]
-position = Vector2(313, 287)
+[node name="Ball" type="RigidBody2D" parent="." unique_id=862803632]
+position = Vector2(322, 194)
+physics_material_override = SubResource("PhysicsMaterial_h2yge")
+gravity_scale = 0.5
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 3
 script = ExtResource("1_0xm2m")
+gameProperties = ExtResource("2_lquwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=895361514]
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=180812032]
+texture = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=2127869619]
+shape = SubResource("CircleShape2D_sifc0")
+
+[node name="LevelWalls" type="StaticBody2D" parent="." unique_id=1074300178]
+physics_material_override = SubResource("PhysicsMaterial_0xm2m")
+
+[node name="right" type="CollisionShape2D" parent="LevelWalls" unique_id=598274539]
+position = Vector2(640, 360)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_sifc0")
+
+[node name="top" type="CollisionShape2D" parent="LevelWalls" unique_id=1884538656]
+shape = SubResource("WorldBoundaryShape2D_sifc0")
+
+[node name="left" type="CollisionShape2D" parent="LevelWalls" unique_id=524024089]
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_sifc0")
+
+[node name="Bat" type="StaticBody2D" parent="." unique_id=1031534249]
+position = Vector2(325, 330)
+physics_material_override = SubResource("PhysicsMaterial_1bvp3")
+script = ExtResource("3_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bat" unique_id=829826266]
+scale = Vector2(4, 0.75)
 texture = ExtResource("2_h2yge")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1117157410]
-shape = SubResource("CircleShape2D_c7xce")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat" unique_id=881752591]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_1bvp3")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1522687327]
-position = Vector2(140, 352)
+[node name="OutArea" type="Area2D" parent="." unique_id=244651015]
+position = Vector2(324, 427.64)
+collision_layer = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=236378067]
-texture = ExtResource("3_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1628084825]
-shape = SubResource("RectangleShape2D_c7xce")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=2001543779]
-position = Vector2(239, 360)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1167376400]
-shape = SubResource("WorldBoundaryShape2D_c7xce")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutArea" unique_id=1318569660]
+shape = SubResource("WorldBoundaryShape2D_cx551")
+debug_color = Color(0.9067214, 0.1386497, 0.66289157, 0.41960785)
