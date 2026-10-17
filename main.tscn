@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://m635jmgkti5n" path="res://Scripts/lives_manager.gd" id="1_2cqfq"]
 [ext_resource type="Script" uid="uid://dlj1b61wwimo4" path="res://Scripts/upgrade_manager.gd" id="1_5vw27"]
+[ext_resource type="Script" uid="uid://bu4nldx3qc3lq" path="res://Scripts/ui_manager.gd" id="1_yaehf"]
 [ext_resource type="Texture2D" uid="uid://bmauc48gxglmh" path="res://Sprites/greenSquare.png" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b23buabh3sigj" path="res://Scripts/bat.gd" id="3_1bvp3"]
+[ext_resource type="FontFile" uid="uid://d2o7wdvha7hjv" path="res://Fonts/m6x11.ttf" id="3_074og"]
 [ext_resource type="Texture2D" uid="uid://ctafehlq1f6dw" path="res://Sprites/brownBlock.png" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="3_w48qg"]
 [ext_resource type="Script" uid="uid://dqtkoi3ld1q82" path="res://Scripts/side_walls.gd" id="4_272bh"]
@@ -38,7 +40,15 @@ distance = 34.0
 
 [node name="Node2D" type="Node2D" unique_id=1396456076]
 
+[node name="UIManager" type="Node2D" parent="." unique_id=434124978]
+process_mode = 3
+z_index = 1000
+script = ExtResource("1_yaehf")
+gameProperties = ExtResource("2_lquwl")
+font = ExtResource("3_074og")
+
 [node name="LivesManager" type="Node2D" parent="." unique_id=1256196642]
+process_mode = 3
 z_index = 1000
 script = ExtResource("1_2cqfq")
 gameProperties = ExtResource("2_lquwl")
