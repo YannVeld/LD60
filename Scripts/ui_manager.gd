@@ -41,7 +41,8 @@ func _draw() -> void:
 	
 	if livesManager.is_game_over:
 		draw_string(font, center + Vector2(-_width/2,0), "Game Over!", HORIZONTAL_ALIGNMENT_CENTER, _width, 64)
-		draw_string(font, center + Vector2(-_width/2,32), "<Press ← or → to try again>", HORIZONTAL_ALIGNMENT_CENTER, _width, 16)
+		draw_string(font, center + Vector2(-_width/2,32), "Score: " + str(ballManager.bat_bounce_count), HORIZONTAL_ALIGNMENT_CENTER, _width, 28)
+		draw_string(font, center + Vector2(-_width/2,64), "<Press ← or → to try again>", HORIZONTAL_ALIGNMENT_CENTER, _width, 16)
 
 	if livesManager.waiting_to_begin:
 		draw_string(font, center + Vector2(-_width/2,0), "Some Game Title", HORIZONTAL_ALIGNMENT_CENTER, _width, 64)
