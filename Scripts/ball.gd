@@ -2,8 +2,6 @@ class_name Ball extends RigidBody2D
 
 @export var gameProperties: GameProperties
 
-const MAXSPEED: float = 2000.0
-
 var initial_pos: Vector2
 
 signal bat_bounce
@@ -29,8 +27,8 @@ func _physics_process(delta: float) -> void:
 	pass
 		
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if linear_velocity.length() > MAXSPEED:
-		linear_velocity = linear_velocity.normalized() * MAXSPEED
+	if linear_velocity.length() > gameProperties.ball_max_speed:
+		linear_velocity = linear_velocity.normalized() * gameProperties.ball_max_speed
 		
 	
 
@@ -41,7 +39,7 @@ func _respawn(respawn_time: float):
 	linear_velocity = Vector2.ZERO
 	await get_tree().create_timer(respawn_time).timeout
 	var vel: Vector2 = Vector2.LEFT.rotated(PI*randf())
-	linear_velocity = vel * gameProperties.ball_speed
+	linear_velocity = vel * gameProperties.ball_initial_speed
 	
 	set_deferred("freeze", false)
 	

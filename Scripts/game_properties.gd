@@ -2,7 +2,8 @@ class_name GameProperties extends Resource
 
 
 @export_group("Ball")
-@export var ball_speed: float = 500.0
+@export var ball_initial_speed: float = 500.0
+@export var ball_max_speed: float = 2000.0
 @export var ball_respawn_time: float = 2.0
 
 signal ball_count_changed
