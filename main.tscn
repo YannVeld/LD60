@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bmauc48gxglmh" path="res://Sprites/greenSquare.png" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
 [ext_resource type="Script" uid="uid://b23buabh3sigj" path="res://Scripts/bat.gd" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://ctafehlq1f6dw" path="res://Sprites/brownBlock.png" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dqtkoi3ld1q82" path="res://Scripts/side_walls.gd" id="4_272bh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
 friction = 0.0
@@ -54,18 +56,31 @@ shape = SubResource("CircleShape2D_sifc0")
 
 [node name="LevelWalls" type="StaticBody2D" parent="." unique_id=1074300178]
 physics_material_override = SubResource("PhysicsMaterial_0xm2m")
+script = ExtResource("4_272bh")
+gameProperties = ExtResource("2_lquwl")
 
 [node name="right" type="CollisionShape2D" parent="LevelWalls" unique_id=598274539]
-position = Vector2(640, 360)
+position = Vector2(640, 180)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_sifc0")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelWalls/right" unique_id=528952576]
+position = Vector2(-3.496911e-07, -8)
+scale = Vector2(32, 1)
+texture = ExtResource("3_h2yge")
 
 [node name="top" type="CollisionShape2D" parent="LevelWalls" unique_id=1884538656]
 shape = SubResource("WorldBoundaryShape2D_sifc0")
 
 [node name="left" type="CollisionShape2D" parent="LevelWalls" unique_id=524024089]
+position = Vector2(0, 180)
 rotation = 4.712389
 shape = SubResource("WorldBoundaryShape2D_sifc0")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelWalls/left" unique_id=1280803631]
+position = Vector2(-9.5399045e-08, -8)
+scale = Vector2(32, 1)
+texture = ExtResource("3_h2yge")
 
 [node name="Bat" type="StaticBody2D" parent="." unique_id=1031534249]
 position = Vector2(325, 330)
