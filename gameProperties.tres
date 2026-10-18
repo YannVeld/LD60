@@ -6,5 +6,8 @@
 
 [resource]
 script = ExtResource("1_2tppu")
+ball_initial_speed = 300.0
+ball_max_speed = 600.0
 ball_gravity = 0.25
+bat_boost = 150.0
 metadata/_custom_type_script = "uid://bbos43d6hcw4x"

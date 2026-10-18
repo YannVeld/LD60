@@ -16,7 +16,6 @@
 [ext_resource type="Resource" uid="uid://cf6tsi80if0k5" path="res://Upgrades/decrease_upgrade_option_count.tres" id="7_074og"]
 [ext_resource type="Script" uid="uid://di6rtvbqpcuw7" path="res://Scripts/ball_manager.gd" id="7_272bh"]
 [ext_resource type="AudioStream" uid="uid://cr3i4mc4hwxkd" path="res://Sounds/GameOver.wav" id="7_lswn8"]
-[ext_resource type="Resource" uid="uid://g56ek58hu6mw" path="res://Upgrades/increase_ball_speed.tres" id="8_cegan"]
 [ext_resource type="Resource" uid="uid://dx5t73f8bnoe1" path="res://Upgrades/increase_wall_distance.tres" id="9_82xsv"]
 [ext_resource type="Resource" uid="uid://bfx5yvg0gwl7r" path="res://Upgrades/decrease_ball_size.tres" id="10_vivmo"]
 [ext_resource type="Resource" uid="uid://de78c7ioffkux" path="res://Upgrades/decrease_max_lives.tres" id="11_getpj"]
@@ -28,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://wyv7mmxml47" path="res://Scenes/bat.tscn" id="20_82xsv"]
 [ext_resource type="Shader" uid="uid://brnrucigx6qo4" path="res://postprocessing.gdshader" id="21_getpj"]
 [ext_resource type="Script" uid="uid://d388fjquxpwv4" path="res://Scripts/postprocessing_manager.gd" id="21_ryguw"]
+[ext_resource type="Resource" uid="uid://cognj44vigmkg" path="res://Upgrades/increase_bat_boost.tres" id="22_qsp4k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 friction = 0.0
@@ -91,7 +91,7 @@ process_mode = 3
 z_index = 1000
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
-possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("10_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("11_getpj"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("15_d13ii"), ExtResource("9_82xsv"), ExtResource("16_getpj"), ExtResource("17_ryguw")])
+possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("10_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("11_getpj"), ExtResource("7_074og"), ExtResource("15_d13ii"), ExtResource("9_82xsv"), ExtResource("16_getpj"), ExtResource("17_ryguw"), ExtResource("22_qsp4k")])
 _upgrades_open_sound = ExtResource("19_1u8w0")
 _apply_upgrade_sound = ExtResource("20_0odxb")
 

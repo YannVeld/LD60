@@ -37,7 +37,7 @@ func reset():
 		ball_max_speed = value
 		property_changed.emit("ball_max_speed", value)
 func check_ball_max_speed(value: int) -> bool:
-	if value <= 2000: return false
+	if value > 2000: return false
 	return true
 
 @export var ball_respawn_time: float = 1.0:
@@ -80,13 +80,19 @@ func check_ball_size(value: int) -> bool:
 	set(value):
 		if bat_boost == value: return
 		bat_boost = value
+		ball_max_speed = 4*value
 		property_changed.emit("bat_boost", value)
+func check_bat_boost(value: float) -> bool:
+	if not check_ball_max_speed(4*value): return false
+	if value > 1500.0: return false
+	return true
 
 @export var bat_speed: float = 500.0:
 	set(value):
 		if bat_speed == value: return
 		bat_speed = value
 		property_changed.emit("bat_speed", value)
+
 
 @export var bat_width: float = 64.0:
 	set(value):

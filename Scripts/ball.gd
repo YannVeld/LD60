@@ -66,7 +66,8 @@ func _respawn(respawn_time: float, initial_spawn: bool=false):
 	
 func _on_body_entered(body: Node):
 	if body is Bat:
-		set_axis_velocity(linear_velocity + Vector2.UP * gameProperties.bat_boost)
+		#set_axis_velocity(linear_velocity + Vector2.UP * gameProperties.bat_boost)
+		set_axis_velocity(linear_velocity + linear_velocity.normalized() * gameProperties.bat_boost)
 		bat_bounce.emit()
 		body.do_ball_bounce_effects(self)
 		_sound_manager.play_sound(_ball_bat_bounce_sound, 0.4)
