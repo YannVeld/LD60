@@ -31,6 +31,15 @@ const KEY_TO_INDEX: Dictionary[Key, int] = {
 	KEY_9: 9
 }
 
+var _button_selected: int = -1
+
+signal description_changed
+var selected_upgrade_description: String:
+	get:
+		if _button_selected < 0: return ""
+		if _button_selected >= option_count: return ""
+		return _upgrades[_button_selected].description
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gameProperties.property_changed.connect(_on_upgrade_option_count_changed)
@@ -46,10 +55,12 @@ func _create_button():
 	var center: Vector2 = get_viewport_rect().size/2.0
 	_inst.global_position = center
 	_inst.index = option_count
-	_inst.text = str(option_count + 1)
+	#_inst.text = str(option_count + 1)
 	add_child(_inst)
 
 	_inst.pressed_upgrade.connect(_on_upgrade_button_pressed)
+	_inst.mouse_entered_upgrade.connect(_on_upgrade_button_mouse_entered)
+	_inst.mouse_exited_upgrade.connect(_on_upgrade_button_mouse_exited)
 	_buttons.append(_inst)
 	
 	_inst.hide()
@@ -65,10 +76,10 @@ func _redraw_buttons():
 		var _button: UpgradeButton = _buttons[ii]
 		var _offset: float = BUTTON_SPACING * (ii - (option_count - 1)/2.)
 		
-		_button.text = _upgrades[ii].description
+		#_button.text = _upgrades[ii].description
 		
-		#_button.global_position = center - _button.size/2.0 + Vector2(_offset,0)
-		_button.global_position = center - _button.size/2.0 + Vector2(0,_offset)
+		_button.global_position = center - _button.size/2.0 + Vector2(_offset,0)
+		#_button.global_position = center - _button.size/2.0 + Vector2(0,_offset)
 		
 		
 	
@@ -148,6 +159,17 @@ func _close_upgrade_choice():
 func _on_upgrade_button_pressed(index: int):
 	_apply_upgrade(index)
 	
+func _on_upgrade_button_mouse_entered(index: int):
+	_set_selected_button(index)
+	
+func _on_upgrade_button_mouse_exited(index: int):
+	_set_selected_button(-1)
+	
+
+func _set_selected_button(index: int):
+	if _button_selected == index: return
+	_button_selected = index
+	description_changed.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

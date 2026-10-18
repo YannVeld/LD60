@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://dfo6dk06h2oeq"]
 
 [ext_resource type="Script" uid="uid://btw4q3prnkxqm" path="res://Scripts/upgrade_button.gd" id="1_lmwtk"]
+[ext_resource type="Texture2D" uid="uid://bnwxcjitim64" path="res://Sprites/UpgradeButton.png" id="1_yieou"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_getpj"]
+texture = ExtResource("1_yieou")
 
 [node name="UpgradeButton" type="Button" unique_id=1542294873]
 process_mode = 2
 z_index = 1000
-offset_left = 177.0
-offset_top = 148.0
-offset_right = 497.0
-offset_bottom = 180.0
-text = "1"
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_getpj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_getpj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_getpj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_getpj")
+theme_override_styles/focus = SubResource("StyleBoxTexture_getpj")
 script = ExtResource("1_lmwtk")

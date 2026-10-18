@@ -17,6 +17,7 @@ func _ready() -> void:
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 	livesManager.reset_game.connect(_on_game_reset)
 	upgradeManager.upgrade_applied.connect(_on_upgrade_applied)
+	upgradeManager.description_changed.connect(_on_description_changed)
 	gameProperties.property_changed.connect(_on_property_changed)
 	
 	_set_background_color(gameProperties.color_palette)
@@ -31,6 +32,9 @@ func _on_game_reset():
 	queue_redraw()
 	
 func _on_upgrade_applied():
+	queue_redraw()
+	
+func _on_description_changed():
 	queue_redraw()
 	
 func _on_property_changed(property: String, new_value):
@@ -51,6 +55,9 @@ func _draw() -> void:
 		
 		draw_string(font, Vector2(16,_height-16), "Score: " + str(ballManager.bat_bounce_count), 0, -1, 16, text_color)
 	
+	
+	if upgradeManager._is_choosing:
+		draw_string(font, center + Vector2(-_width/2.0,64), upgradeManager.selected_upgrade_description, HORIZONTAL_ALIGNMENT_CENTER, _width, 28, text_color)
 
 	
 	if livesManager.is_game_over:
