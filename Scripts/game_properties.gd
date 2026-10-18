@@ -67,6 +67,11 @@ func check_ball_size(value: int) -> bool:
 	if value > 5: return false
 	return true
 
+@export var ball_gravity: float = 0.5:
+	set(value):
+		if ball_gravity == value: return
+		ball_gravity = value
+		property_changed.emit("ball_gravity", value)
 
 
 

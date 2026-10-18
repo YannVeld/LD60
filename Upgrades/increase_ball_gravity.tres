@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://buw7nlql428hk"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_072ku"]
+
+[resource]
+script = ExtResource("1_072ku")
+property_name = "ball_gravity"
+value = 0.25
+description = "Increase ball gravity"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

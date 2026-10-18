@@ -30,6 +30,7 @@ func _ready() -> void:
 	
 	_reset_size()
 	_respawn(0.0)
+	gravity_scale = gameProperties.ball_gravity
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,8 +67,12 @@ func _on_out_area_entered(body: Node2D):
 	_respawn(gameProperties.ball_respawn_time)
 	
 func _on_property_changed(property: String, new_value):
-	if property != "ball_size": return
-	_reset_size()
+	if property == "ball_size":
+		_reset_size()
+		return
+	if property == "ball_gravity": 
+		gravity_scale = gameProperties.ball_gravity
+		return
 	
 func _reset_size():
 	var _radius: float = 8
