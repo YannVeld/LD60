@@ -4,6 +4,9 @@ class_name UpgradeButton extends Button
 @export var click_sound: AudioStream
 @export var hover_sound: AudioStream
 
+@export var next_button: Button
+@export var previous_button: Button
+
 @onready var _icon_sprite: Sprite2D = $"./Sprite2D"
 @onready var _sound_manager: SoundManager = $"/root/Node2D/SoundManager"
 
@@ -15,6 +18,7 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+
 
 func _on_pressed():
 	pressed_upgrade.emit(index)

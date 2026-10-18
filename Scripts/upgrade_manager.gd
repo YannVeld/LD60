@@ -188,10 +188,48 @@ func _process(delta: float) -> void:
 	if ballManager.bat_bounce_count >= _next_count:
 		_present_upgrade_choice()
 		
-	if Input.is_action_just_pressed("reroll"):
-		_roll_new_upgrades()
+	if _is_choosing:
+		if Input.is_action_just_pressed("reroll"):
+			_roll_new_upgrades()
+			
+		if Input.is_action_just_pressed("move_left"):
+			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			
+			var _ind: int
+			if _button_selected == -1: _ind = 0
+			elif _button_selected > 0: _ind = _button_selected - 1
+			else: _ind = option_count-1
+			
+			var _button: Button = _buttons[_ind]
+			var _button_pos = _button.get_global_rect().get_center()
+			var _button_pos_canvas = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * _button_pos
+			Input.warp_mouse(_button_pos_canvas)
+				
+		if Input.is_action_just_pressed("move_right"):
+			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			
+			var _ind: int
+			if _button_selected == -1: _ind = 0
+			elif _button_selected < option_count-1: _ind = _button_selected + 1
+			else: _ind = 0
+			
+			var _button: Button = _buttons[_ind]
+			var _button_pos = _button.get_global_rect().get_center()
+			var _button_pos_canvas = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * _button_pos
+			Input.warp_mouse(_button_pos_canvas)
+			
+		if Input.is_action_just_pressed("confirm"):
+			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			
+			if _button_selected >= 0:
+				_apply_upgrade(_button_selected)
 	
 func _input(event):
+	_input_number_keys(event)
+	if event is InputEventMouseMotion and (Input.mouse_mode == Input.MOUSE_MODE_HIDDEN):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+func _input_number_keys(event):
 	if not event is InputEventKey: return
 	if not event.pressed: return
 	if not _is_choosing: return
