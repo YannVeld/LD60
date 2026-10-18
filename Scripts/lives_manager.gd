@@ -35,10 +35,16 @@ func _ready() -> void:
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 	reset_game.connect(ballManager.reset)
 	reset_game.connect(upgradeManager.reset)
+	gameProperties.property_changed.connect(_on_max_life_reduced)
 	lives_lost = 0
 	
 	gameProperties.initialize()
 	get_tree().paused = true
+
+func _on_max_life_reduced(property: String, new_value):
+	if property != "max_lives": return
+	lives_lost -= 1
+	
 
 func _on_out_of_bounds(out_of_bounds_count: int):
 	bounces_since_fail = 0
