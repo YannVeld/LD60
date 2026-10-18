@@ -1,7 +1,10 @@
 [gd_resource type="Resource" script_class="GameProperties" format=3 uid="uid://bmmc64lrnyhh8"]
 
 [ext_resource type="Script" uid="uid://bbos43d6hcw4x" path="res://Scripts/game_properties.gd" id="1_2tppu"]
+[ext_resource type="ColorPalette" uid="uid://cbi2mhoicjxf6" path="res://ColorPalettes/basic_palette.tres" id="1_w5fx7"]
+[ext_resource type="ColorPalette" uid="uid://c5kf6eikpynhl" path="res://ColorPalettes/raw_palette.tres" id="2_qgyn7"]
 
 [resource]
 script = ExtResource("1_2tppu")
+ball_gravity = 0.25
 metadata/_custom_type_script = "uid://bbos43d6hcw4x"

@@ -17,6 +17,7 @@ signal out_of_bounds
 
 @onready var _col_shape: CollisionShape2D = $"./CollisionShape2D"
 @onready var _sprite: Sprite2D = $"./Sprite2D"
+@onready var _particles: CPUParticles2D = $"./CPUParticles2D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -87,3 +88,5 @@ func _reset_size():
 	_col_shape.shape.radius = _radius
 	_sprite.texture = ballSpritesPerSize[gameProperties.ball_size]
 	#_sprite.global_scale = Vector2.ONE * 2 * _radius / _sprite.texture.get_size().x
+
+	_particles.emission_sphere_radius = _radius

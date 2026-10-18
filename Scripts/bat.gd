@@ -45,4 +45,5 @@ func _physics_process(delta: float) -> void:
 	if position.x  < _min_x: position.x = _min_x
 		
 func do_ball_bounce_effects(ball: Ball):
+	_particles.restart(false)
 	_particles.emitting = true
