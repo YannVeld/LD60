@@ -8,6 +8,9 @@ class_name UIManager extends Node2D
 
 @export var font: Font
 
+@onready var _arrow_left: Texture2D = preload("res://Sprites/Arrow/Arrow_left.png")
+@onready var _arrow_right: Texture2D = preload("res://Sprites/Arrow/Arrow_right.png")
+
 var text_color: Color:
 	get: return gameProperties.raw_color_palette.get_colors()[2]
 
@@ -68,8 +71,57 @@ func _draw() -> void:
 	if livesManager.is_game_over:
 		draw_string(font, center + Vector2(-_width/2,0), "Game Over!", HORIZONTAL_ALIGNMENT_CENTER, _width, 64, text_color)
 		draw_string(font, center + Vector2(-_width/2,32), "Score: " + str(ballManager.bat_bounce_count), HORIZONTAL_ALIGNMENT_CENTER, _width, 28, text_color)
-		draw_string(font, center + Vector2(-_width/2,64), "<Press ← or → to try again>", HORIZONTAL_ALIGNMENT_CENTER, _width, 16, text_color)
+
+		var ypos = 64
+		var _text1: String = "<Press"
+		var _text2: String = "or"
+		var _text3: String = "to try again>"
+		var _len1 = font.get_string_size(_text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+		var _len2 = font.get_string_size(_text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+		var _len3 = font.get_string_size(_text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+		var _arrow_len_left = _arrow_left.get_size().x
+		var _arrow_len_right = _arrow_right.get_size().x
+		var _total_len = _len1 + _len2 + _len3 + _arrow_len_left + _arrow_len_right
+		
+		var yoffset = _arrow_left.get_size().y/2.0 + 4.0
+		
+		
+		var xoffset = -_total_len/2
+		draw_string(font, center + Vector2(xoffset,ypos), _text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+		xoffset += _len1
+		draw_texture(_arrow_left, center + Vector2(xoffset,ypos - yoffset), text_color)
+		xoffset += _arrow_len_left
+		draw_string(font, center + Vector2(xoffset,ypos), _text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+		xoffset += _len2
+		draw_texture(_arrow_right, center + Vector2(xoffset,ypos - yoffset), text_color)
+		xoffset += _arrow_len_right
+		draw_string(font, center + Vector2(xoffset,ypos), _text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+
 
 	if livesManager.waiting_to_begin:
 		draw_string(font, center + Vector2(-_width/2,0), "Some Game Title", HORIZONTAL_ALIGNMENT_CENTER, _width, 64, text_color)
-		draw_string(font, center + Vector2(-_width/2,32), "<Press ← or →>", HORIZONTAL_ALIGNMENT_CENTER, _width, 16, text_color)
+		
+		var ypos = 64
+		var _text1: String = "<Press"
+		var _text2: String = "or"
+		var _text3: String = ">"
+		var _len1 = font.get_string_size(_text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+		var _len2 = font.get_string_size(_text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+		var _len3 = font.get_string_size(_text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+		var _arrow_len_left = _arrow_left.get_size().x
+		var _arrow_len_right = _arrow_right.get_size().x
+		var _total_len = _len1 + _len2 + _len3 + _arrow_len_left + _arrow_len_right
+		
+		var yoffset = _arrow_left.get_size().y/2.0 + 4.0
+		
+		
+		var xoffset = -_total_len/2
+		draw_string(font, center + Vector2(xoffset,ypos), _text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+		xoffset += _len1
+		draw_texture(_arrow_left, center + Vector2(xoffset,ypos - yoffset), text_color)
+		xoffset += _arrow_len_left
+		draw_string(font, center + Vector2(xoffset,ypos), _text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+		xoffset += _len2
+		draw_texture(_arrow_right, center + Vector2(xoffset,ypos - yoffset), text_color)
+		xoffset += _arrow_len_right
+		draw_string(font, center + Vector2(xoffset,ypos), _text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
