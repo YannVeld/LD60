@@ -101,6 +101,7 @@ offset_top = -320.0
 offset_right = 80.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="top" type="CollisionShape2D" parent="LevelWalls" unique_id=1884538656]
 shape = SubResource("WorldBoundaryShape2D_sifc0")
@@ -115,6 +116,7 @@ offset_left = -80.0
 offset_top = -320.0
 offset_right = 560.0
 pivot_offset = Vector2(0, 320)
+mouse_filter = 2
 
 [node name="Bat" parent="." unique_id=302170426 instance=ExtResource("20_82xsv")]
 position = Vector2(325, 330)
