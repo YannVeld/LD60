@@ -2,6 +2,7 @@ class_name LivesManager extends Node2D
 
 @export var gameProperties: GameProperties
 @onready var ballManager: BallManager = $"../BallManager"
+@onready var upgradeManager: UpgradeManager = $"../UpgradeManager"
 
 signal reset_game
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 	ballManager.out_of_bounds.connect(_on_out_of_bounds)
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 	reset_game.connect(ballManager.reset)
+	reset_game.connect(upgradeManager.reset)
 	lives_lost = 0
 	
 	gameProperties.initialize()

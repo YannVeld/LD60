@@ -40,6 +40,9 @@ var selected_upgrade_description: String:
 		if _button_selected >= option_count: return ""
 		return _upgrades[_button_selected].description
 
+func reset():
+	_previous_choice_bounce_count = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gameProperties.property_changed.connect(_on_upgrade_option_count_changed)
