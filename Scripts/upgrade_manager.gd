@@ -44,6 +44,10 @@ var selected_upgrade_description: String:
 		if _button_selected >= option_count: return ""
 		return _upgrades[_button_selected].description
 
+
+var _add_ball_upgrade: Upgrade = preload("res://Upgrades/add_ball.tres")
+var _upgrades_done: int = 0
+
 func reset():
 	_previous_choice_bounce_count = 0
 
@@ -115,21 +119,25 @@ func _roll_new_upgrades():
 	_upgrades.clear()
 	_upgrades.resize(option_count)
 	
-	for ii in range(option_count):
-		var _option: Upgrade
-		var _is_okay: bool = false
-		var _iters: int = 0
-		while not _is_okay:
-			_option = possible_upgrades.pick_random()
-			
-			_is_okay = true
-			if not _option.check_possible(gameProperties): _is_okay = false
-			for jj in range(ii): if _upgrades[jj] == _option: _is_okay = false
-			
-			_iters = _iters + 1
-			assert(_iters < 999, "Could not find a suitable upgrade.")
-			
-		_upgrades[ii] = _option
+	if ((_upgrades_done + 1)%gameProperties.upgrades_count_before_ball_add) == 0:
+		for ii in range(option_count):
+			_upgrades[ii] = _add_ball_upgrade
+	else:
+		for ii in range(option_count):
+			var _option: Upgrade
+			var _is_okay: bool = false
+			var _iters: int = 0
+			while not _is_okay:
+				_option = possible_upgrades.pick_random()
+				
+				_is_okay = true
+				if not _option.check_possible(gameProperties): _is_okay = false
+				for jj in range(ii): if _upgrades[jj] == _option: _is_okay = false
+				
+				_iters = _iters + 1
+				assert(_iters < 999, "Could not find a suitable upgrade.")
+				
+			_upgrades[ii] = _option
 		
 	_redraw_buttons()
 	
@@ -153,6 +161,7 @@ func _present_upgrade_choice():
 func _apply_upgrade(index: int):
 	if not _is_choosing: return
 	_upgrades[index].apply(gameProperties)
+	_upgrades_done += 1
 	_roll_new_upgrades()
 	_close_upgrade_choice()
 	upgrade_applied.emit()

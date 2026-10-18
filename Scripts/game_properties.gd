@@ -74,7 +74,6 @@ func check_ball_size(value: int) -> bool:
 		property_changed.emit("ball_gravity", value)
 
 
-
 @export_group("Bat")
 @export var bat_boost: float = 100.0:
 	set(value):
@@ -171,4 +170,14 @@ func check_max_lives(value: int) -> bool:
 func check_bounce_count_for_life_gain(value: int) -> bool:
 	if value <= 0: return false
 	if value > 6: return false
+	return true
+	
+	
+@export var upgrades_count_before_ball_add: int = 5:
+	set(value):
+		if upgrades_count_before_ball_add == value: return
+		upgrades_count_before_ball_add = value
+		property_changed.emit("upgrades_count_before_ball_add", value)
+func check_upgrades_count_before_ball_add(value: int) -> bool:
+	if value <= 0: return false
 	return true
