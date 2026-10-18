@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cqjnxclmtdw7b" path="res://Scripts/SoundManager.gd" id="1_d13ii"]
 [ext_resource type="Script" uid="uid://bu4nldx3qc3lq" path="res://Scripts/ui_manager.gd" id="1_yaehf"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
+[ext_resource type="AudioStream" uid="uid://bosvp13wkf2n8" path="res://Music/LD60.wav" id="2_xuqvo"]
 [ext_resource type="FontFile" uid="uid://d2o7wdvha7hjv" path="res://Fonts/m6x11.ttf" id="3_074og"]
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="3_w48qg"]
 [ext_resource type="Script" uid="uid://dqtkoi3ld1q82" path="res://Scripts/side_walls.gd" id="4_272bh"]
@@ -63,6 +64,12 @@ shader_parameter/color_replace_threshold = 0.25200001197
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("1_d13ii")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1712532708]
+process_mode = 3
+stream = ExtResource("2_xuqvo")
+autoplay = true
+bus = &"Music"
 
 [node name="UIManager" type="Node2D" parent="." unique_id=434124978]
 process_mode = 3
