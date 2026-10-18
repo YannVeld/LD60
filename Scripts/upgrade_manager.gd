@@ -188,6 +188,9 @@ func _process(delta: float) -> void:
 	if ballManager.bat_bounce_count >= _next_count:
 		_present_upgrade_choice()
 		
+	if Input.is_action_just_pressed("quit_game"):
+		get_tree().quit()
+		
 	if _is_choosing:
 		if Input.is_action_just_pressed("reroll"):
 			_roll_new_upgrades()
