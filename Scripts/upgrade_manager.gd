@@ -2,8 +2,11 @@ class_name UpgradeManager extends Node2D
 
 @export var gameProperties: GameProperties
 @onready var ballManager: BallManager = $"../BallManager"
+@onready var _sound_manager: SoundManager = $"/root/Node2D/SoundManager"
 
 @export var possible_upgrades: Array[Upgrade] = []
+@export var _upgrades_open_sound: AudioStream
+@export var _apply_upgrade_sound: AudioStream
 
 signal start_upgrading
 signal upgrade_applied
@@ -138,6 +141,7 @@ func _roll_new_upgrades():
 func _present_upgrade_choice():
 	if _is_choosing: return
 	start_upgrading.emit()
+	_sound_manager.play_sound(_upgrades_open_sound)
 	
 	_previous_choice_bounce_count = ballManager.bat_bounce_count
 	_is_choosing = true
@@ -152,6 +156,7 @@ func _apply_upgrade(index: int):
 	_roll_new_upgrades()
 	_close_upgrade_choice()
 	upgrade_applied.emit()
+	_sound_manager.play_sound(_apply_upgrade_sound)
 
 func _close_upgrade_choice():
 	for _button: Button in _buttons:

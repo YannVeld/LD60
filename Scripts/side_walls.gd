@@ -1,4 +1,4 @@
-extends StaticBody2D
+class_name SideWall extends StaticBody2D
 
 @export var gameProperties: GameProperties
 

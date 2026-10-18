@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m635jmgkti5n" path="res://Scripts/lives_manager.gd" id="1_2cqfq"]
 [ext_resource type="Script" uid="uid://dlj1b61wwimo4" path="res://Scripts/upgrade_manager.gd" id="1_5vw27"]
+[ext_resource type="Script" uid="uid://cqjnxclmtdw7b" path="res://Scripts/SoundManager.gd" id="1_d13ii"]
 [ext_resource type="Script" uid="uid://bu4nldx3qc3lq" path="res://Scripts/ui_manager.gd" id="1_yaehf"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
 [ext_resource type="FontFile" uid="uid://d2o7wdvha7hjv" path="res://Fonts/m6x11.ttf" id="3_074og"]
@@ -9,9 +10,11 @@
 [ext_resource type="Script" uid="uid://dqtkoi3ld1q82" path="res://Scripts/side_walls.gd" id="4_272bh"]
 [ext_resource type="Resource" uid="uid://cjgk8sbqvqba4" path="res://Upgrades/add_ball.tres" id="4_vivmo"]
 [ext_resource type="Resource" uid="uid://cpngqtjhgdnp5" path="res://Upgrades/decrease_bat_speed.tres" id="5_2cqfq"]
+[ext_resource type="AudioStream" uid="uid://djwq4jjlnwsib" path="res://Sounds/GameStart.wav" id="6_a6jrf"]
 [ext_resource type="Resource" uid="uid://bb76jss1o2oea" path="res://Upgrades/decrease_bat_width.tres" id="6_yaehf"]
 [ext_resource type="Resource" uid="uid://cf6tsi80if0k5" path="res://Upgrades/decrease_upgrade_option_count.tres" id="7_074og"]
 [ext_resource type="Script" uid="uid://di6rtvbqpcuw7" path="res://Scripts/ball_manager.gd" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://cr3i4mc4hwxkd" path="res://Sounds/GameOver.wav" id="7_lswn8"]
 [ext_resource type="Resource" uid="uid://g56ek58hu6mw" path="res://Upgrades/increase_ball_speed.tres" id="8_cegan"]
 [ext_resource type="Resource" uid="uid://dx5t73f8bnoe1" path="res://Upgrades/increase_wall_distance.tres" id="9_82xsv"]
 [ext_resource type="Resource" uid="uid://bfx5yvg0gwl7r" path="res://Upgrades/decrease_ball_size.tres" id="10_vivmo"]
@@ -19,6 +22,8 @@
 [ext_resource type="Resource" uid="uid://toycg2i38jjm" path="res://Upgrades/increase_bounce_count_for_life_gain.tres" id="15_d13ii"]
 [ext_resource type="Resource" uid="uid://buw7nlql428hk" path="res://Upgrades/increase_ball_gravity.tres" id="16_getpj"]
 [ext_resource type="Resource" uid="uid://bmyaoi7vxnivo" path="res://Upgrades/increase_wall_angle.tres" id="17_ryguw"]
+[ext_resource type="AudioStream" uid="uid://blp2ne36pq6yc" path="res://Sounds/Powerup.wav" id="19_1u8w0"]
+[ext_resource type="AudioStream" uid="uid://mb7e7gkf8rv7" path="res://Sounds/Choose.wav" id="20_0odxb"]
 [ext_resource type="PackedScene" uid="uid://wyv7mmxml47" path="res://Scenes/bat.tscn" id="20_82xsv"]
 [ext_resource type="Shader" uid="uid://brnrucigx6qo4" path="res://postprocessing.gdshader" id="21_getpj"]
 [ext_resource type="Script" uid="uid://d388fjquxpwv4" path="res://Scripts/postprocessing_manager.gd" id="21_ryguw"]
@@ -54,6 +59,11 @@ shader_parameter/color_replace_threshold = 0.25200001197
 
 [node name="Node2D" type="Node2D" unique_id=1396456076]
 
+[node name="SoundManager" type="Node2D" parent="." unique_id=283974530]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("1_d13ii")
+
 [node name="UIManager" type="Node2D" parent="." unique_id=434124978]
 process_mode = 3
 z_index = 1000
@@ -66,6 +76,8 @@ process_mode = 3
 z_index = 1000
 script = ExtResource("1_2cqfq")
 gameProperties = ExtResource("2_lquwl")
+_start_game_sound = ExtResource("6_a6jrf")
+_game_over_sound = ExtResource("7_lswn8")
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1040316871]
 process_mode = 3
@@ -73,6 +85,8 @@ z_index = 1000
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
 possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("10_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("11_getpj"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("15_d13ii"), ExtResource("9_82xsv"), ExtResource("16_getpj"), ExtResource("17_ryguw")])
+_upgrades_open_sound = ExtResource("19_1u8w0")
+_apply_upgrade_sound = ExtResource("20_0odxb")
 
 [node name="BallManager" type="Node2D" parent="." unique_id=1540103077]
 process_mode = 3

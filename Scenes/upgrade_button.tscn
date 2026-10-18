@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btw4q3prnkxqm" path="res://Scripts/upgrade_button.gd" id="1_lmwtk"]
 [ext_resource type="Texture2D" uid="uid://bnwxcjitim64" path="res://Sprites/UpgradeButton.png" id="1_yieou"]
 [ext_resource type="Texture2D" uid="uid://crwm2l8lakrsa" path="res://Sprites/UpgradeButton_selected.png" id="2_ymg7c"]
+[ext_resource type="AudioStream" uid="uid://bh2u1nlopf3v7" path="res://Sounds/Click1.wav" id="4_hk0eq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hk0eq"]
 texture = ExtResource("1_yieou")
@@ -26,6 +27,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_getpj")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_ymg7c")
 theme_override_styles/focus = SubResource("StyleBoxTexture_yieou")
 script = ExtResource("1_lmwtk")
+hover_sound = ExtResource("4_hk0eq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=399668262]
 position = Vector2(32, 32)

@@ -1,8 +1,12 @@
 class_name LivesManager extends Node2D
 
 @export var gameProperties: GameProperties
+@export var _start_game_sound: AudioStream
+@export var _game_over_sound: AudioStream
+
 @onready var ballManager: BallManager = $"../BallManager"
 @onready var upgradeManager: UpgradeManager = $"../UpgradeManager"
+@onready var _sound_manager: SoundManager = $"/root/Node2D/SoundManager"
 
 signal reset_game
 
@@ -47,6 +51,7 @@ func _on_bat_bounce(bat_bounce_count: int):
 func _start_game_over():
 	is_game_over = true
 	get_tree().paused = true
+	_sound_manager.play_sound(_game_over_sound)
 	
 func _reset_game():
 	gameProperties.reset()
@@ -56,6 +61,7 @@ func _reset_game():
 	is_game_over = false
 	waiting_to_begin = false
 	get_tree().paused = false
+	_sound_manager.play_sound(_start_game_sound)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
