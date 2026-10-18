@@ -2,6 +2,8 @@ class_name UpgradeButton extends Button
 
 @export var index: int = 0
 
+@onready var _icon_sprite: Sprite2D = $"./Sprite2D"
+
 signal pressed_upgrade(index: int)
 signal mouse_entered_upgrade(index: int)
 signal mouse_exited_upgrade(index: int)
@@ -19,3 +21,6 @@ func _on_mouse_entered():
 	
 func _on_mouse_exited():
 	mouse_exited_upgrade.emit(index)
+
+func set_icon(texture: Texture2D):
+	_icon_sprite.texture = texture

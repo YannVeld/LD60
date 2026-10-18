@@ -1,6 +1,7 @@
 class_name Upgrade extends Resource
 
 @export var property_name: String = "ball_max_speed"
+@export var icon: Texture2D = preload("res://Sprites/UpgradeButton/Upgrade_unknown.png")
 
 enum Operation {ADD, MULTIPLY, SET}
 

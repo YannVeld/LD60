@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cjgk8sbqvqba4"]
 
+[ext_resource type="Texture2D" uid="uid://tqms23rlwgwa" path="res://Sprites/UpgradeButton/Upgrade_extra_ball.png" id="1_0e5rl"]
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_ryog7"]
 
 [resource]
 script = ExtResource("1_ryog7")
 property_name = "ball_count"
+icon = ExtResource("1_0e5rl")
 description = "Add a ball"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"

@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://de78c7ioffkux" path="res://Upgrades/decrease_max_lives.tres" id="11_getpj"]
 [ext_resource type="Resource" uid="uid://toycg2i38jjm" path="res://Upgrades/increase_bounce_count_for_life_gain.tres" id="15_d13ii"]
 [ext_resource type="Resource" uid="uid://buw7nlql428hk" path="res://Upgrades/increase_ball_gravity.tres" id="16_getpj"]
+[ext_resource type="Resource" uid="uid://bmyaoi7vxnivo" path="res://Upgrades/increase_wall_angle.tres" id="17_ryguw"]
 [ext_resource type="PackedScene" uid="uid://wyv7mmxml47" path="res://Scenes/bat.tscn" id="20_82xsv"]
 [ext_resource type="Shader" uid="uid://brnrucigx6qo4" path="res://postprocessing.gdshader" id="21_getpj"]
 [ext_resource type="Script" uid="uid://d388fjquxpwv4" path="res://Scripts/postprocessing_manager.gd" id="21_ryguw"]
@@ -71,7 +72,7 @@ process_mode = 3
 z_index = 1000
 script = ExtResource("1_5vw27")
 gameProperties = ExtResource("2_lquwl")
-possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("10_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("11_getpj"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("15_d13ii"), ExtResource("9_82xsv"), ExtResource("16_getpj")])
+possible_upgrades = Array[ExtResource("3_w48qg")]([ExtResource("4_vivmo"), ExtResource("10_vivmo"), ExtResource("5_2cqfq"), ExtResource("6_yaehf"), ExtResource("11_getpj"), ExtResource("7_074og"), ExtResource("8_cegan"), ExtResource("15_d13ii"), ExtResource("9_82xsv"), ExtResource("16_getpj"), ExtResource("17_ryguw")])
 
 [node name="BallManager" type="Node2D" parent="." unique_id=1540103077]
 process_mode = 3
@@ -85,41 +86,35 @@ script = ExtResource("4_272bh")
 gameProperties = ExtResource("2_lquwl")
 
 [node name="right" type="CollisionShape2D" parent="LevelWalls" unique_id=598274539]
-position = Vector2(640, 180)
+position = Vector2(640, 360)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_sifc0")
 
 [node name="ColorRect" type="ColorRect" parent="LevelWalls/right" unique_id=1362530437]
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -320.0
+offset_left = -560.0
 offset_top = -320.0
-offset_right = 320.0
-grow_horizontal = 2
+offset_right = 80.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="top" type="CollisionShape2D" parent="LevelWalls" unique_id=1884538656]
 shape = SubResource("WorldBoundaryShape2D_sifc0")
 
 [node name="left" type="CollisionShape2D" parent="LevelWalls" unique_id=524024089]
-position = Vector2(0, 180)
+position = Vector2(0, 360)
 rotation = 4.712389
 shape = SubResource("WorldBoundaryShape2D_sifc0")
 
 [node name="ColorRect" type="ColorRect" parent="LevelWalls/left" unique_id=1691665377]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -320.0
+offset_left = -80.0
 offset_top = -320.0
-offset_right = 320.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 560.0
+pivot_offset = Vector2(0, 320)
 
 [node name="Bat" parent="." unique_id=302170426 instance=ExtResource("20_82xsv")]
 position = Vector2(325, 330)

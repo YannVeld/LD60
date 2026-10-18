@@ -116,7 +116,16 @@ func check_wall_distance(value: float) -> bool:
 	if value > 640.0: return false
 	return true
 
-
+@export var wall_angle: float = 0.0:
+	set(value):
+		if not check_wall_angle(value): return
+		if wall_angle == value: return
+		wall_angle = value
+		property_changed.emit("wall_angle", value)
+func check_wall_angle(value: float) -> bool:
+	if value < 0.0: return false
+	if value > 45.0: return false
+	return true
 
 
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bmyaoi7vxnivo"]
+
+[ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_3uppe"]
+
+[resource]
+script = ExtResource("1_3uppe")
+property_name = "wall_angle"
+description = "Increase wall angle"
+metadata/_custom_type_script = "uid://2gq5mgmrcttn"

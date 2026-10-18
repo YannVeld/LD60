@@ -2,18 +2,30 @@
 
 [ext_resource type="Script" uid="uid://btw4q3prnkxqm" path="res://Scripts/upgrade_button.gd" id="1_lmwtk"]
 [ext_resource type="Texture2D" uid="uid://bnwxcjitim64" path="res://Sprites/UpgradeButton.png" id="1_yieou"]
+[ext_resource type="Texture2D" uid="uid://crwm2l8lakrsa" path="res://Sprites/UpgradeButton_selected.png" id="2_ymg7c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hk0eq"]
+texture = ExtResource("1_yieou")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_getpj"]
-texture = ExtResource("1_yieou")
+texture = ExtResource("2_ymg7c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ymg7c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yieou"]
+texture = ExtResource("2_ymg7c")
 
 [node name="UpgradeButton" type="Button" unique_id=1542294873]
 process_mode = 2
 z_index = 1000
 offset_right = 64.0
 offset_bottom = 64.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_getpj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hk0eq")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_getpj")
 theme_override_styles/hover = SubResource("StyleBoxTexture_getpj")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_getpj")
-theme_override_styles/focus = SubResource("StyleBoxTexture_getpj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ymg7c")
+theme_override_styles/focus = SubResource("StyleBoxTexture_yieou")
 script = ExtResource("1_lmwtk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=399668262]
+position = Vector2(32, 32)

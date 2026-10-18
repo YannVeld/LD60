@@ -80,7 +80,7 @@ func _redraw_buttons():
 		var _offset: float = BUTTON_SPACING * (ii - (option_count - 1)/2.)
 		
 		#_button.text = _upgrades[ii].description
-		
+		_button.set_icon(_upgrades[ii].icon)
 		_button.global_position = center - _button.size/2.0 + Vector2(_offset,0)
 		#_button.global_position = center - _button.size/2.0 + Vector2(0,_offset)
 		
