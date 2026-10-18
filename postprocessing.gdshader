@@ -15,8 +15,36 @@ uniform float grain : hint_range(0.0, 1.0) = 0.2;
 
 uniform float smooth_edges : hint_range(0.0, 1.0) = 0.01;
 
+
+
+uniform vec3 placeholder_color1: source_color;
+uniform vec3 placeholder_color2: source_color;
+uniform vec3 placeholder_color3: source_color;
+
+uniform vec3 new_color1: source_color;
+uniform vec3 new_color2: source_color;
+uniform vec3 new_color3: source_color;
+
+uniform float color_replace_threshold: hint_range(0.0, 1.0) = 0.001;
+
+
 vec3 sample_screen(vec2 uv) {
-	return textureLod(screen_texture, uv, 0.0).rgb;
+	vec3 _col =  textureLod(screen_texture, uv, 0.0).rgb;
+	
+	//Replace colors
+	float color1_distance = length(_col.rgb - placeholder_color1);
+	float color2_distance = length(_col.rgb - placeholder_color2);
+	float color3_distance = length(_col.rgb - placeholder_color3);
+	
+	if (color1_distance < color_replace_threshold){
+		_col = new_color1;
+	} else if (color2_distance < color_replace_threshold){
+		_col = new_color2;
+	} else if (color3_distance < color_replace_threshold){
+		_col = new_color3;
+	}
+	
+	return _col;
 }
 
 float random(vec2 uv) {

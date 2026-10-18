@@ -14,6 +14,14 @@ func reset():
 		var _name: String = _prop["name"]
 		set(_name, _initial_copy.get(_name))
 
+@export var raw_color_palette: ColorPalette = preload("res://ColorPalettes/raw_palette.tres"):
+	set(value): push_warning("The raw color palette should not be set at runtime!")
+
+@export var color_palette: ColorPalette = preload("res://ColorPalettes/basic_palette.tres"):
+	set(value):
+		if color_palette == value: return
+		color_palette = value
+		property_changed.emit("color_palette", value)
 
 @export_group("Ball")
 @export var ball_initial_speed: float = 500.0:

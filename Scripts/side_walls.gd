@@ -9,6 +9,7 @@ extends StaticBody2D
 func _ready() -> void:
 	gameProperties.property_changed.connect(_on_wall_distance_changed)
 	_update_wall_distance()
+	_set_wall_colors()
 	
 
 func _on_wall_distance_changed(property: String, new_value):
@@ -19,6 +20,12 @@ func _update_wall_distance():
 	var center: Vector2 = get_viewport_rect().size/2.0
 	_left_wall.global_position.x = center.x - gameProperties.wall_distance / 2.0
 	_right_wall.global_position.x = center.x + gameProperties.wall_distance / 2.0
+
+func _set_wall_colors():
+	var _rect_left: ColorRect = $"./left/ColorRect"
+	_rect_left.color = gameProperties.raw_color_palette.get_colors()[1]
+	var _rect_right: ColorRect = $"./right/ColorRect"
+	_rect_right.color = gameProperties.raw_color_palette.get_colors()[1]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
