@@ -201,8 +201,8 @@ func _process(delta: float) -> void:
 		get_tree().quit()
 		
 	if _is_choosing:
-		if Input.is_action_just_pressed("reroll"):
-			_roll_new_upgrades()
+		#if Input.is_action_just_pressed("reroll"):
+			#_roll_new_upgrades()
 			
 		if Input.is_action_just_pressed("move_left"):
 			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
