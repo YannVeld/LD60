@@ -15,6 +15,7 @@ class_name Ball extends RigidBody2D
 }
 
 var initial_pos: Vector2
+var initial_spawn_time: float = 0.0
 
 signal bat_bounce
 signal out_of_bounds
@@ -35,7 +36,7 @@ func _ready() -> void:
 	_outArea.body_entered.connect(_on_out_area_entered)
 	
 	_reset_size()
-	_respawn(0.0, true)
+	_respawn(initial_spawn_time, true)
 	gravity_scale = gameProperties.ball_gravity
 	
 
@@ -56,7 +57,9 @@ func _respawn(respawn_time: float, initial_spawn: bool=false):
 	global_position = initial_pos
 	linear_velocity = Vector2.ZERO
 	await get_tree().create_timer(respawn_time).timeout
-	var vel: Vector2 = Vector2.LEFT.rotated(PI*randf())
+	
+	var _rot_angle: float = (2 * (randi()%2) - 1) * randf_range(0.1*PI,0.4*PI)
+	var vel: Vector2 = Vector2.UP.rotated(_rot_angle)
 	linear_velocity = vel * gameProperties.ball_initial_speed
 	
 	set_deferred("freeze", false)

@@ -28,7 +28,7 @@ func _ready() -> void:
 	for ii in range(gameProperties.ball_count):
 		var _pos = Vector2.ZERO
 		_pos.x = randf_range(-gameProperties.wall_distance/2+16, gameProperties.wall_distance/2-16)
-		_spawn_ball(_pos)
+		_spawn_ball(_pos, true)
 
 func _on_ball_count_changed(property: String, new_value):
 	if property != "ball_count": return
@@ -46,10 +46,11 @@ func _on_ball_count_changed(property: String, new_value):
 		_diff = gameProperties.ball_count - ball_count
 		
 
-func _spawn_ball(pos_from_center: Vector2):
+func _spawn_ball(pos_from_center: Vector2, game_start: bool = false):
 	var _inst: Ball = ball.instantiate()
 	var center: Vector2 = get_viewport_rect().size/2.0
 	_inst.global_position = center + pos_from_center
+	_inst.initial_spawn_time = gameProperties.ball_respawn_time if not game_start else 0.0
 	add_child(_inst)
 
 	_inst.bat_bounce.connect(_on_bat_bounce)
