@@ -9,6 +9,7 @@ class_name LivesManager extends Node2D
 @onready var _sound_manager: SoundManager = $"/root/Node2D/SoundManager"
 
 signal reset_game
+signal can_restart_game
 
 var lives_lost: int = 0:
 	set(value):
@@ -24,6 +25,9 @@ var bounces_since_fail: int = 0
 
 var is_game_over: bool = false
 var waiting_to_begin: bool = true
+var can_restart: bool = true
+
+var game_over_pause_length: float = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,6 +57,11 @@ func _start_game_over():
 	get_tree().paused = true
 	_sound_manager.play_sound(_game_over_sound)
 	
+	can_restart = false
+	await get_tree().create_timer(game_over_pause_length).timeout
+	can_restart = true
+	can_restart_game.emit()
+	
 func _reset_game():
 	gameProperties.reset()
 	reset_game.emit()
@@ -66,6 +75,7 @@ func _reset_game():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not (is_game_over or waiting_to_begin): return
+	if not can_restart: return
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
 		_reset_game()
 

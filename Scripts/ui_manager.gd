@@ -19,6 +19,7 @@ func _ready() -> void:
 	ballManager.out_of_bounds.connect(_on_out_of_bounds)
 	ballManager.bat_bounce.connect(_on_bat_bounce)
 	livesManager.reset_game.connect(_on_game_reset)
+	livesManager.can_restart_game.connect(_on_game_reset)
 	upgradeManager.upgrade_applied.connect(_on_upgrade_applied)
 	upgradeManager.description_changed.connect(_on_description_changed)
 	upgradeManager.start_upgrading.connect(_on_start_upgrading)
@@ -72,30 +73,31 @@ func _draw() -> void:
 		draw_string(font, center + Vector2(-_width/2,0), "Game Over!", HORIZONTAL_ALIGNMENT_CENTER, _width, 64, text_color)
 		draw_string(font, center + Vector2(-_width/2,32), "Score: " + str(ballManager.bat_bounce_count), HORIZONTAL_ALIGNMENT_CENTER, _width, 28, text_color)
 
-		var ypos = 64
-		var _text1: String = "<Press"
-		var _text2: String = "or"
-		var _text3: String = "to try again>"
-		var _len1 = font.get_string_size(_text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
-		var _len2 = font.get_string_size(_text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
-		var _len3 = font.get_string_size(_text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
-		var _arrow_len_left = _arrow_left.get_size().x
-		var _arrow_len_right = _arrow_right.get_size().x
-		var _total_len = _len1 + _len2 + _len3 + _arrow_len_left + _arrow_len_right
-		
-		var yoffset = _arrow_left.get_size().y/2.0 + 4.0
-		
-		
-		var xoffset = -_total_len/2
-		draw_string(font, center + Vector2(xoffset,ypos), _text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
-		xoffset += _len1
-		draw_texture(_arrow_left, center + Vector2(xoffset,ypos - yoffset), text_color)
-		xoffset += _arrow_len_left
-		draw_string(font, center + Vector2(xoffset,ypos), _text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
-		xoffset += _len2
-		draw_texture(_arrow_right, center + Vector2(xoffset,ypos - yoffset), text_color)
-		xoffset += _arrow_len_right
-		draw_string(font, center + Vector2(xoffset,ypos), _text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+		if livesManager.can_restart:
+			var ypos = 64
+			var _text1: String = "<Press"
+			var _text2: String = "or"
+			var _text3: String = "to try again>"
+			var _len1 = font.get_string_size(_text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+			var _len2 = font.get_string_size(_text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+			var _len3 = font.get_string_size(_text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16).x
+			var _arrow_len_left = _arrow_left.get_size().x
+			var _arrow_len_right = _arrow_right.get_size().x
+			var _total_len = _len1 + _len2 + _len3 + _arrow_len_left + _arrow_len_right
+			
+			var yoffset = _arrow_left.get_size().y/2.0 + 4.0
+			
+			
+			var xoffset = -_total_len/2
+			draw_string(font, center + Vector2(xoffset,ypos), _text1, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+			xoffset += _len1
+			draw_texture(_arrow_left, center + Vector2(xoffset,ypos - yoffset), text_color)
+			xoffset += _arrow_len_left
+			draw_string(font, center + Vector2(xoffset,ypos), _text2, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
+			xoffset += _len2
+			draw_texture(_arrow_right, center + Vector2(xoffset,ypos - yoffset), text_color)
+			xoffset += _arrow_len_right
+			draw_string(font, center + Vector2(xoffset,ypos), _text3, HORIZONTAL_ALIGNMENT_LEFT, _width, 16, text_color)
 
 
 	if livesManager.waiting_to_begin:
