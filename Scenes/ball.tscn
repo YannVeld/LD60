@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dxgq8kcajiq3s" path="res://Scripts/ball.gd" id="1_763xp"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_sh48c"]
 [ext_resource type="Texture2D" uid="uid://2wh2ila100x0" path="res://Sprites/yellowCircle.png" id="3_cfgco"]
+[ext_resource type="Texture2D" uid="uid://bf4j2021la5hf" path="res://Sprites/Ball/Radius2.png" id="3_hk63f"]
+[ext_resource type="Texture2D" uid="uid://dppw0ee8ddvv0" path="res://Sprites/Ball/Radius4.png" id="4_vm4s8"]
+[ext_resource type="Texture2D" uid="uid://7x0q432bv5vh" path="res://Sprites/Ball/Radius8.png" id="5_2b6yv"]
+[ext_resource type="Texture2D" uid="uid://krs8s03vd0p6" path="res://Sprites/Ball/Radius12.png" id="6_cx4d7"]
+[ext_resource type="Texture2D" uid="uid://b7rmmx3iajp0x" path="res://Sprites/Ball/Radius16.png" id="7_gejbx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
 friction = 0.0
@@ -22,6 +27,13 @@ contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_763xp")
 gameProperties = ExtResource("2_sh48c")
+ballSpritesPerSize = Dictionary[int, Texture2D]({
+1: ExtResource("3_hk63f"),
+2: ExtResource("4_vm4s8"),
+3: ExtResource("5_2b6yv"),
+4: ExtResource("6_cx4d7"),
+5: ExtResource("7_gejbx")
+})
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=426487715]
 texture = ExtResource("3_cfgco")

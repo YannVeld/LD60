@@ -21,7 +21,7 @@ func _on_bat_width_changed(property: String, new_value=0):
 func _set_bat_width():
 	var _sprite_width = _bat_sprite.texture.get_width()
 	_bat_sprite.scale.x = gameProperties.bat_width / _sprite_width
-	_bat_shape.scale.y = gameProperties.bat_width / (4*_sprite_width)
+	_bat_shape.scale.y = gameProperties.bat_width / (_sprite_width)
 
 	
 

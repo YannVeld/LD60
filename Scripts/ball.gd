@@ -2,6 +2,14 @@ class_name Ball extends RigidBody2D
 
 @export var gameProperties: GameProperties
 
+@export var ballSpritesPerSize: Dictionary[int,Texture2D] = {
+	1: null,
+	2: null,
+	3: null,
+	4: null,
+	5: null
+}
+
 var initial_pos: Vector2
 
 signal bat_bounce
@@ -71,4 +79,5 @@ func _reset_size():
 		5: _radius = 16
 		
 	_col_shape.shape.radius = _radius
-	_sprite.global_scale = Vector2.ONE * 2 * _radius / _sprite.texture.get_size().x
+	_sprite.texture = ballSpritesPerSize[gameProperties.ball_size]
+	#_sprite.global_scale = Vector2.ONE * 2 * _radius / _sprite.texture.get_size().x

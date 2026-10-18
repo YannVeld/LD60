@@ -44,16 +44,6 @@ func _on_ball_count_changed(property: String, new_value):
 		else:
 			_remove_ball()
 		_diff = gameProperties.ball_count - ball_count
-	
-	#var _num_new_balls = gameProperties.ball_count - ball_count
-	#if _num_new_balls <= 0: 
-		#print("Tried to create balls, but there were already enough!")
-		#return
-		#
-	#for ii in range(_num_new_balls):
-		#var _pos = Vector2.ZERO
-		#_pos.x = randf_range(-gameProperties.wall_distance/2+16, gameProperties.wall_distance/2-16)
-		#_spawn_ball(_pos)
 		
 
 func _spawn_ball(pos_from_center: Vector2):
