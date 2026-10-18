@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://domjg4vmpwfp7"]
+
+[ext_resource type="Shader" uid="uid://brnrucigx6qo4" path="res://postprocessing.gdshader" id="1_8tdoy"]
+
+[resource]
+shader = ExtResource("1_8tdoy")
+shader_parameter/curve = 0.05
+shader_parameter/chroma = 1.0
+shader_parameter/line_sep = 7.0
+shader_parameter/line_intens = 0.10000000475

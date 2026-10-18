@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://cognj44vigmkg" path="res://Upgrades/increase_bat_boost.tres" id="14_ryguw"]
 [ext_resource type="Resource" uid="uid://toycg2i38jjm" path="res://Upgrades/increase_bounce_count_for_life_gain.tres" id="15_d13ii"]
 [ext_resource type="PackedScene" uid="uid://wyv7mmxml47" path="res://Scenes/bat.tscn" id="20_82xsv"]
+[ext_resource type="Material" uid="uid://domjg4vmpwfp7" path="res://postprocess_material.tres" id="21_getpj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 friction = 0.0
@@ -98,3 +99,15 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OutArea" unique_id=1318569660]
 shape = SubResource("WorldBoundaryShape2D_cx551")
 debug_color = Color(0.9067214, 0.1386497, 0.66289157, 0.41960785)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1129528661]
+
+[node name="ShaderRect" type="ColorRect" parent="CanvasLayer" unique_id=1351661064]
+process_mode = 3
+material = ExtResource("21_getpj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
