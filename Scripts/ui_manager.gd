@@ -13,6 +13,7 @@ class_name UIManager extends Node2D
 
 @onready var _heart_full: Texture2D = preload("res://Sprites/Life_full.png")
 @onready var _heart_empty: Texture2D = preload("res://Sprites/Life_empty.png")
+@onready var _heart_fake: Texture2D = preload("res://Sprites/Life_fake.png")
 
 var text_color: Color:
 	get: return gameProperties.raw_color_palette.get_colors()[2]
@@ -61,12 +62,10 @@ func _draw() -> void:
 	var _height: float = get_viewport_rect().size.y
 	
 	if not livesManager.waiting_to_begin:
-		draw_string(font, Vector2(16,32), "Bounces left for next life: " + str(gameProperties.bounce_count_for_life_gain - livesManager.bounces_since_fail), 0, -1, 16, text_color)	
-		
-		draw_string(font, Vector2(16,_height-16), "Score: " + str(ballManager.bat_bounce_count), 0, -1, 16, text_color)
+		draw_string(font, Vector2(32,32), "Score: " + str(ballManager.bat_bounce_count), 0, -1, 32, text_color)
 	
 	
-		var _sep: float = 0.0
+		var _sep: float = 2.0
 		var total_width = livesManager.lives_left * _heart_full.get_size().x\
 			+ livesManager.lives_lost * _heart_empty.get_size().x\
 			+ (livesManager.lives_left + livesManager.lives_lost - 1) * _sep
@@ -76,9 +75,23 @@ func _draw() -> void:
 		for ii in range(livesManager.lives_left):
 			draw_texture(_heart_full, Vector2(xoffset,ypos), text_color)
 			xoffset += _heart_full.get_size().x + _sep
+			
+		if livesManager.lives_lost > 0:
+			var _frac: float = float(livesManager.bounces_since_fail) / gameProperties.bounce_count_for_life_gain
+			var _pos := Vector2(xoffset,ypos)
+			
+			var _s = _heart_fake.get_size()
+			var source_rect := Rect2(0, 0, _s.x*_frac, _s.y)
+			var dest_rect := Rect2(_pos.x, _pos.y, _s.x*_frac, _s.y)
+			
+			draw_texture_rect_region(_heart_fake, dest_rect, source_rect, text_color)
+			
 		for ii in range(livesManager.lives_lost):
 			draw_texture(_heart_empty, Vector2(xoffset,ypos), text_color)
 			xoffset += _heart_empty.get_size().x + _sep
+			
+		
+			
 	
 	
 	if upgradeManager._is_choosing:
