@@ -60,6 +60,7 @@ func _on_body_entered(body: Node):
 	if body is Bat:
 		set_axis_velocity(linear_velocity + Vector2.UP * gameProperties.bat_boost)
 		bat_bounce.emit()
+		body.do_ball_bounce_effects(self)
 	
 func _on_out_area_entered(body: Node2D):
 	if not body == self: return

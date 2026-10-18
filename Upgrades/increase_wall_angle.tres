@@ -7,5 +7,6 @@
 script = ExtResource("1_3uppe")
 property_name = "wall_angle"
 icon = ExtResource("1_hhgh6")
+value = 2.0
 description = "Increase wall angle"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"

@@ -6,6 +6,7 @@ var _input_dir: float = 0.0
 
 @onready var _bat_shape: CollisionShape2D = $"./CollisionShape2D"
 @onready var _bat_sprite: Sprite2D = $"./Sprite2D"
+@onready var _particles: CPUParticles2D = $"./CPUParticles2D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _set_bat_width():
 	_bat_sprite.scale.x = gameProperties.bat_width / _sprite_width
 	_bat_shape.scale.y = gameProperties.bat_width / (_sprite_width)
 
+	_particles.emission_rect_extents.x = gameProperties.bat_width / 2.0
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,3 +44,5 @@ func _physics_process(delta: float) -> void:
 	if position.x  > _max_x: position.x = _max_x
 	if position.x  < _min_x: position.x = _min_x
 		
+func do_ball_bounce_effects(ball: Ball):
+	_particles.emitting = true
