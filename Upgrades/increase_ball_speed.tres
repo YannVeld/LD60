@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://g56ek58hu6mw"]
 
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_3jlsy"]
+[ext_resource type="Texture2D" uid="uid://ch1u3la44hyle" path="res://Sprites/UpgradeButton/Upgrade_ball_speed.png" id="1_hufa5"]
 
 [resource]
 script = ExtResource("1_3jlsy")
+icon = ExtResource("1_hufa5")
 value = 250.0
 description = "Increase maximal ball speed"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"

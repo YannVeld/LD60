@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cf6tsi80if0k5"]
 
+[ext_resource type="Texture2D" uid="uid://dfju15uxnd4gp" path="res://Sprites/UpgradeButton/Upgrade_remove_upgrade.png" id="1_2lerq"]
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_dmssn"]
 
 [resource]
 script = ExtResource("1_dmssn")
 property_name = "upgrade_option_count"
+icon = ExtResource("1_2lerq")
 value = -1.0
 description = "Decrease the amount of upgrade options"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"

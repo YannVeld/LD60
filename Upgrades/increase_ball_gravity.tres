@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://buw7nlql428hk"]
 
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_072ku"]
+[ext_resource type="Texture2D" uid="uid://b6sygs1jerch3" path="res://Sprites/UpgradeButton/Upgrade_ball_gravity.png" id="1_mhggq"]
 
 [resource]
 script = ExtResource("1_072ku")
 property_name = "ball_gravity"
+icon = ExtResource("1_mhggq")
 value = 0.25
 description = "Increase ball gravity"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"

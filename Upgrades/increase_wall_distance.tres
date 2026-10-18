@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dx5t73f8bnoe1"]
 
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_5xo02"]
+[ext_resource type="Texture2D" uid="uid://c44asd1vqiacj" path="res://Sprites/UpgradeButton/Upgrade_wall_distance.png" id="1_m8b67"]
 
 [resource]
 script = ExtResource("1_5xo02")
 property_name = "wall_distance"
+icon = ExtResource("1_m8b67")
 value = 64.0
 description = "Increase wall distance"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"

@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bmyaoi7vxnivo"]
 
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="1_3uppe"]
+[ext_resource type="Texture2D" uid="uid://dlvojdxlffhlj" path="res://Sprites/UpgradeButton/Upgrade_wall _angle.png" id="1_hhgh6"]
 
 [resource]
 script = ExtResource("1_3uppe")
 property_name = "wall_angle"
+icon = ExtResource("1_hhgh6")
 description = "Increase wall angle"
 metadata/_custom_type_script = "uid://2gq5mgmrcttn"
