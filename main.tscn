@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://m635jmgkti5n" path="res://Scripts/lives_manager.gd" id="1_2cqfq"]
 [ext_resource type="Script" uid="uid://dlj1b61wwimo4" path="res://Scripts/upgrade_manager.gd" id="1_5vw27"]
 [ext_resource type="Script" uid="uid://bu4nldx3qc3lq" path="res://Scripts/ui_manager.gd" id="1_yaehf"]
-[ext_resource type="Texture2D" uid="uid://bmauc48gxglmh" path="res://Sprites/greenSquare.png" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://bmmc64lrnyhh8" path="res://gameProperties.tres" id="2_lquwl"]
-[ext_resource type="Script" uid="uid://b23buabh3sigj" path="res://Scripts/bat.gd" id="3_1bvp3"]
 [ext_resource type="FontFile" uid="uid://d2o7wdvha7hjv" path="res://Fonts/m6x11.ttf" id="3_074og"]
 [ext_resource type="Texture2D" uid="uid://ctafehlq1f6dw" path="res://Sprites/brownBlock.png" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://2gq5mgmrcttn" path="res://Scripts/upgrade.gd" id="3_w48qg"]
@@ -21,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://de78c7ioffkux" path="res://Upgrades/decrease_max_lives.tres" id="11_getpj"]
 [ext_resource type="Resource" uid="uid://cognj44vigmkg" path="res://Upgrades/increase_bat_boost.tres" id="14_ryguw"]
 [ext_resource type="Resource" uid="uid://toycg2i38jjm" path="res://Upgrades/increase_bounce_count_for_life_gain.tres" id="15_d13ii"]
+[ext_resource type="PackedScene" uid="uid://wyv7mmxml47" path="res://Scenes/bat.tscn" id="20_82xsv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 friction = 0.0
@@ -29,14 +28,6 @@ bounce = 1.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sifc0"]
 normal = Vector2(0, 1)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
-friction = 0.0
-bounce = 1.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bvp3"]
-radius = 12.0
-height = 64.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cx551"]
 distance = 34.0
@@ -97,21 +88,8 @@ position = Vector2(-9.5399045e-08, -8)
 scale = Vector2(32, 1)
 texture = ExtResource("3_h2yge")
 
-[node name="Bat" type="StaticBody2D" parent="." unique_id=1031534249]
+[node name="Bat" parent="." unique_id=302170426 instance=ExtResource("20_82xsv")]
 position = Vector2(325, 330)
-collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_1bvp3")
-script = ExtResource("3_1bvp3")
-gameProperties = ExtResource("2_lquwl")
-
-[node name="Sprite2D" type="Sprite2D" parent="Bat" unique_id=829826266]
-scale = Vector2(4, 0.75)
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat" unique_id=881752591]
-position = Vector2(0, 6)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_1bvp3")
 
 [node name="OutArea" type="Area2D" parent="." unique_id=244651015]
 position = Vector2(324, 427.64)

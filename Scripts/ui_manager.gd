@@ -32,10 +32,11 @@ func _draw() -> void:
 	var _width: float = get_viewport_rect().size.x
 	var _height: float = get_viewport_rect().size.y
 	
-	draw_string(font, Vector2(16,16), "Lives left: " + str(livesManager.lives_left))
-	draw_string(font, Vector2(16,32), "Bounces left for next life: " + str(gameProperties.bounce_count_for_life_gain - livesManager.bounces_since_fail))	
-	
-	draw_string(font, Vector2(16,_height-16), "Score: " + str(ballManager.bat_bounce_count))
+	if not livesManager.waiting_to_begin:
+		draw_string(font, Vector2(16,16), "Lives left: " + str(livesManager.lives_left))
+		draw_string(font, Vector2(16,32), "Bounces left for next life: " + str(gameProperties.bounce_count_for_life_gain - livesManager.bounces_since_fail))	
+		
+		draw_string(font, Vector2(16,_height-16), "Score: " + str(ballManager.bat_bounce_count))
 	
 
 	
