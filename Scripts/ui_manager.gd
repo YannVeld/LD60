@@ -11,6 +11,9 @@ class_name UIManager extends Node2D
 @onready var _arrow_left: Texture2D = preload("res://Sprites/Arrow/Arrow_left.png")
 @onready var _arrow_right: Texture2D = preload("res://Sprites/Arrow/Arrow_right.png")
 
+@onready var _heart_full: Texture2D = preload("res://Sprites/Life_full.png")
+@onready var _heart_empty: Texture2D = preload("res://Sprites/Life_empty.png")
+
 var text_color: Color:
 	get: return gameProperties.raw_color_palette.get_colors()[2]
 
@@ -58,10 +61,24 @@ func _draw() -> void:
 	var _height: float = get_viewport_rect().size.y
 	
 	if not livesManager.waiting_to_begin:
-		draw_string(font, Vector2(16,16), "Lives left: " + str(livesManager.lives_left), 0, -1, 16, text_color)
 		draw_string(font, Vector2(16,32), "Bounces left for next life: " + str(gameProperties.bounce_count_for_life_gain - livesManager.bounces_since_fail), 0, -1, 16, text_color)	
 		
 		draw_string(font, Vector2(16,_height-16), "Score: " + str(ballManager.bat_bounce_count), 0, -1, 16, text_color)
+	
+	
+		var _sep: float = 0.0
+		var total_width = livesManager.lives_left * _heart_full.get_size().x\
+			+ livesManager.lives_lost * _heart_empty.get_size().x\
+			+ (livesManager.lives_left + livesManager.lives_lost - 1) * _sep
+			
+		var xoffset = center.x - total_width/2.0
+		var ypos = 8.0
+		for ii in range(livesManager.lives_left):
+			draw_texture(_heart_full, Vector2(xoffset,ypos), text_color)
+			xoffset += _heart_full.get_size().x + _sep
+		for ii in range(livesManager.lives_lost):
+			draw_texture(_heart_empty, Vector2(xoffset,ypos), text_color)
+			xoffset += _heart_empty.get_size().x + _sep
 	
 	
 	if upgradeManager._is_choosing:
