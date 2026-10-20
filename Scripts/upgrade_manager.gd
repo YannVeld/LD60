@@ -51,6 +51,7 @@ var _upgrades_done: int = 0
 func reset():
 	_previous_choice_bounce_count = 0
 	_upgrades_done = 0
+	_roll_new_upgrades()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
