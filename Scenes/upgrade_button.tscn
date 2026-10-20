@@ -1,31 +1,19 @@
 [gd_scene format=3 uid="uid://dfo6dk06h2oeq"]
 
 [ext_resource type="Script" uid="uid://btw4q3prnkxqm" path="res://Scripts/upgrade_button.gd" id="1_lmwtk"]
-[ext_resource type="Texture2D" uid="uid://bnwxcjitim64" path="res://Sprites/UpgradeButton.png" id="1_yieou"]
-[ext_resource type="Texture2D" uid="uid://crwm2l8lakrsa" path="res://Sprites/UpgradeButton_selected.png" id="2_ymg7c"]
+[ext_resource type="StyleBox" uid="uid://fx58fs13px7q" path="res://button_style.tres" id="1_ymg7c"]
 [ext_resource type="AudioStream" uid="uid://bh2u1nlopf3v7" path="res://Sounds/Click1.wav" id="4_hk0eq"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hk0eq"]
-texture = ExtResource("1_yieou")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_getpj"]
-texture = ExtResource("2_ymg7c")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ymg7c"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yieou"]
-texture = ExtResource("2_ymg7c")
 
 [node name="UpgradeButton" type="Button" unique_id=1542294873]
 process_mode = 2
 z_index = 1000
 offset_right = 64.0
 offset_bottom = 64.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_hk0eq")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_getpj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_getpj")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_ymg7c")
-theme_override_styles/focus = SubResource("StyleBoxTexture_yieou")
+theme_override_styles/normal = ExtResource("1_ymg7c")
+theme_override_styles/pressed = ExtResource("1_ymg7c")
+theme_override_styles/hover = ExtResource("1_ymg7c")
+theme_override_styles/disabled = ExtResource("1_ymg7c")
+theme_override_styles/focus = ExtResource("1_ymg7c")
 script = ExtResource("1_lmwtk")
 hover_sound = ExtResource("4_hk0eq")
 

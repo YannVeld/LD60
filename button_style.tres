@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://fx58fs13px7q"]
+
+[ext_resource type="Texture2D" uid="uid://bnwxcjitim64" path="res://Sprites/UpgradeButton.png" id="1_is5ee"]
+
+[resource]
+texture = ExtResource("1_is5ee")

@@ -35,6 +35,7 @@ const KEY_TO_INDEX: Dictionary[Key, int] = {
 	KEY_9: 9
 }
 
+signal button_selection_changed(new_index: int)
 var _button_selected: int = -1
 
 signal description_changed
@@ -68,6 +69,7 @@ func _create_button():
 	var center: Vector2 = get_viewport_rect().size/2.0
 	_inst.global_position = center
 	_inst.index = option_count
+	button_selection_changed.connect(_inst.on_select_index)
 	#_inst.text = str(option_count + 1)
 	add_child(_inst)
 
@@ -191,6 +193,7 @@ func _set_selected_button(index: int):
 	if _button_selected == index: return
 	_button_selected = index
 	description_changed.emit()
+	button_selection_changed.emit(index)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -203,45 +206,29 @@ func _process(delta: float) -> void:
 		get_tree().quit()
 		
 	if _is_choosing:
-		#if Input.is_action_just_pressed("reroll"):
-			#_roll_new_upgrades()
 			
 		if Input.is_action_just_pressed("move_left"):
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-			
 			var _ind: int
 			if _button_selected == -1: _ind = 0
 			elif _button_selected > 0: _ind = _button_selected - 1
 			else: _ind = option_count-1
 			
-			var _button: Button = _buttons[_ind]
-			var _button_pos = _button.get_global_rect().get_center()
-			var _button_pos_canvas = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * _button_pos
-			Input.warp_mouse(_button_pos_canvas)
+			_set_selected_button(_ind)
 				
 		if Input.is_action_just_pressed("move_right"):
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-			
 			var _ind: int
 			if _button_selected == -1: _ind = 0
 			elif _button_selected < option_count-1: _ind = _button_selected + 1
 			else: _ind = 0
 			
-			var _button: Button = _buttons[_ind]
-			var _button_pos = _button.get_global_rect().get_center()
-			var _button_pos_canvas = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * _button_pos
-			Input.warp_mouse(_button_pos_canvas)
+			_set_selected_button(_ind)
 			
 		if Input.is_action_just_pressed("confirm"):
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-			
 			if _button_selected >= 0:
 				_apply_upgrade(_button_selected)
 	
 func _input(event):
 	_input_number_keys(event)
-	if event is InputEventMouseMotion and (Input.mouse_mode == Input.MOUSE_MODE_HIDDEN):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func _input_number_keys(event):
 	if not event is InputEventKey: return
